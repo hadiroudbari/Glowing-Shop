@@ -1,14 +1,25 @@
-import Header from "../ui/Header";
-import Footer from "../ui/Footer";
-import Landing from "../ui/Landing";
+import BeautyBox from "../ui/BeautyBox";
+import CategoryBox from "../ui/CategoryBox";
+import InfoFeatures from "../ui/InfoFeatures";
+import Supports from "../ui/Supports";
 
 function Home() {
   return (
     <div>
-      <Header />
-      <Landing />
-      <main>Main</main>
-      <Footer />
+      <BeautyBox
+        src="./images/Beauty/banner-32.jpg"
+        title="Essenstial Items"
+        text="Empower Yourself"
+      />
+      <InfoFeatures />
+      <CategoryBox />
+      <Supports />
+      <BeautyBox
+        type="reverse"
+        src="./images/Beauty/banner-33.jpg"
+        title="Pamper Your Skin"
+        text="Empower Yourself"
+      />
     </div>
   );
 }

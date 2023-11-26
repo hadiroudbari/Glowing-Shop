@@ -23,11 +23,11 @@ StarRating.propTypes = {
 
 export default function StarRating({
   maxRating = 5,
-  color = "#fcc419",
-  size = 48,
+  color = "#4e7661",
+  size = 16,
   className = "",
-  messages = [],
-  defaultRating = 0,
+  // messages = [],
+  defaultRating = 5,
   onSetRating,
 }) {
   const [rating, setRating] = useState(defaultRating);
@@ -38,12 +38,12 @@ export default function StarRating({
     onSetRating(rating);
   }
 
-  const textStyle = {
+  /*   const textStyle = {
     lineHeight: "1",
     margin: "0",
     color,
     fontSize: `${size / 1.5}px`,
-  };
+  }; */
 
   return (
     <div style={containerStyle} className={className}>
@@ -60,11 +60,11 @@ export default function StarRating({
           />
         ))}
       </div>
-      <p style={textStyle}>
+      {/* <p style={textStyle}>
         {messages.length === maxRating
           ? messages[tempRating ? tempRating - 1 : rating - 1]
           : tempRating || rating || ""}
-      </p>
+      </p> */}
     </div>
   );
 }
