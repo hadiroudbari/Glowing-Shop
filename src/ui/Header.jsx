@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
 import Navbar from "../ui/Navbar";
-import Landing from "../ui/Landing";
 
 const StyledHeader = styled.header`
-  height: 100vh;
+  height: ${(props) => (props.type === "home" ? "100vh" : "20vh")};
+  position: relative;
 `;
 
-function Header() {
+function Header({ children, type }) {
   return (
-    <StyledHeader>
-      <Landing>
-        <Navbar />
-      </Landing>
+    <StyledHeader type={type}>
+      <Navbar />
+      {children}
     </StyledHeader>
   );
 }

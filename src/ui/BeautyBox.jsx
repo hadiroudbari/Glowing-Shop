@@ -11,7 +11,7 @@ const StyledBeautyBox = styled.div`
   gap: 3rem;
 
   padding: 0 5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 15rem;
 `;
 
 const StyledProductsBox = styled.div`
@@ -27,15 +27,25 @@ const StyledProductsBox = styled.div`
 function BeautyBox({ type, src, title, text }) {
   return (
     <>
-      <HeadingBox>
-        <h2>Shop our Feature products</h2>
-        <p>
-          Made using clean, non-toxic ingredients, our products are designed for
-          everyone.
-        </p>
-      </HeadingBox>
+      {type === "reverse" ? (
+        <HeadingBox>
+          <h2>Customer Favorite Beauty Essentials</h2>
+          <p>
+            Made using clean, non-toxic ingredients, our products are designed
+            for everyone.
+          </p>
+        </HeadingBox>
+      ) : (
+        <HeadingBox>
+          <h2>Shop our Feature products</h2>
+          <p>
+            Made using clean, non-toxic ingredients, our products are designed
+            for everyone.
+          </p>
+        </HeadingBox>
+      )}
       <StyledBeautyBox type={type}>
-        <BeautyItem src={src} title={title} text={text} />
+        <BeautyItem src={src} title={title} text={text} type={type} />
         <StyledProductsBox>
           <ShopProductItem src="./images/Products/product-01-330x440.jpg" />
           <ShopProductItem src="./images/Products/product-02-330x440.jpg" />

@@ -68,7 +68,7 @@ const StyledSpecText = styled.p`
   font-weight: 600;
 `;
 
-function Landing({ children }) {
+function Landing() {
   const [bgNumber, setBgNumber] = useState(0);
 
   useEffect(
@@ -83,15 +83,9 @@ function Landing({ children }) {
 
   return (
     <>
-      <StyledContainer bgnum={0} opc={bgNumber === 0 ? 100 : 0}>
-        {children}
-      </StyledContainer>
-      <StyledContainer bgnum={1} opc={bgNumber === 1 ? 100 : 0}>
-        {children}
-      </StyledContainer>
-      <StyledContainer bgnum={2} opc={bgNumber === 2 ? 100 : 0}>
-        {children}
-      </StyledContainer>
+      <StyledContainer bgnum={0} opc={bgNumber === 0 ? 100 : 0} />
+      <StyledContainer bgnum={1} opc={bgNumber === 1 ? 100 : 0} />
+      <StyledContainer bgnum={2} opc={bgNumber === 2 ? 100 : 0} />
       <SpecBox>
         <StyledSpecTitle>
           <StyledSpecStrong>M</StyledSpecStrong>ake for you!

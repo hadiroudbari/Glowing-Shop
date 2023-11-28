@@ -8,7 +8,7 @@ const CategoryGrid = styled.div`
     "item-1 item-2 item-3"
     "item-1 item-4 item-4";
 
-  gap: 2rem;
+  gap: 2.2rem;
 
   padding: 0 5rem;
   margin-bottom: 5rem;

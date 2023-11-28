@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-import Header from "./Header";
 import Footer from "./Footer";
 
 const StyledAppLayout = styled.div`
   display: flex;
   flex-direction: column;
+
+  position: relative;
 `;
 
 const StyledMain = styled.main`
@@ -17,11 +18,10 @@ const StyledMain = styled.main`
 function AppLayout() {
   return (
     <StyledAppLayout>
-      <Header />
       <StyledMain>
         <Outlet />
       </StyledMain>
-      {/* <Footer /> */}
+      <Footer />
     </StyledAppLayout>
   );
 }

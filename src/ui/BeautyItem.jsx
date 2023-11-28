@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import Button from "./Button";
-import { IoTicketOutline } from "react-icons/io5";
 
 const StyledBeautyItemBox = styled.div`
   position: relative;
@@ -15,7 +14,7 @@ const StyledBeautyItemBox = styled.div`
 `;
 
 const StyledBeautyItemImg = styled.img`
-  height: 975px;
+  height: ${(props) => (props.type === "reverse" ? "915px" : "935px")};
   transition: all 0.3s;
 `;
 
@@ -39,10 +38,10 @@ const StyledBeautyItemText = styled.p`
   font-weight: 600;
 `;
 
-function BeautyItem({ src, title, text }) {
+function BeautyItem({ src, title, text, type }) {
   return (
     <StyledBeautyItemBox>
-      <StyledBeautyItemImg src={src} alt={title} />
+      <StyledBeautyItemImg src={src} alt={title} type={type} />
       <StyledBeautyItemTextBox>
         <StyledBeautyItemSpan>{title}</StyledBeautyItemSpan>
         <StyledBeautyItemText>{text}</StyledBeautyItemText>
