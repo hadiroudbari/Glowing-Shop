@@ -12,7 +12,6 @@ import Checkout from "./pages/ShopCheckout";
 import ProductDetails from "./pages/ShopProductDetails";
 import Profile from "./pages/CustomerProfile";
 import PageNotFound from "./pages/PageNotFound";
-import Admin from "./pages/Admin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProducts from "./pages/AdminProducts";
 import AdminOrders from "./pages/AdminOrders";
@@ -21,6 +20,7 @@ import AdminOrder from "./pages/AdminOrder";
 import AdminSettings from "./pages/AdminSettings";
 import AdminRegister from "./pages/AdminRegister";
 import AdminLogin from "./pages/AdminLogin";
+import AdminLayout from "./ui/AdminLayout";
 
 function App() {
   return (
@@ -40,7 +40,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="profile" element={<Profile />} />
           </Route>
-          <Route path="admin" element={<Admin />}>
+          <Route path="admin" element={<AdminLayout />}>
             <Route index element={<Navigate replace to="dashboard" />} />
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />

@@ -10,17 +10,12 @@ const StyledAppLayout = styled.div`
   position: relative;
 `;
 
-const StyledMain = styled.main`
-  display: flex;
-  flex-direction: column;
-`;
-
 function AppLayout() {
   return (
     <StyledAppLayout>
-      <StyledMain>
+      <main>
         <Outlet />
-      </StyledMain>
+      </main>
       <Footer />
     </StyledAppLayout>
   );
