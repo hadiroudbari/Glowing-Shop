@@ -132,6 +132,8 @@ input,
 button,
 textarea,
 select {
+  border: none;
+  background-color: transparent;
   font: inherit;
   color: inherit;
 }

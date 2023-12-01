@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-const StyledButton = styled.button`
+const Button = styled.button`
   padding: 1.2rem 3.6rem;
   margin: 2rem 0 1rem;
   font-weight: 700;
@@ -27,9 +27,5 @@ const StyledButton = styled.button`
     color: var(--color-grey-0);
   }
 `;
-
-function Button({ children, bg }) {
-  return <StyledButton bg={bg}>{children}</StyledButton>;
-}
 
 export default Button;
