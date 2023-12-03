@@ -64,8 +64,16 @@ const StyledId = styled.div`
 `;
 
 function AdminProductRow({ product }) {
-  const { id, name, pictures, categories, price, stock, discount, status } =
-    product;
+  const {
+    id,
+    name,
+    pictures: { images },
+    categories,
+    price,
+    stock,
+    discount,
+    status,
+  } = product;
 
   return (
     <Table.Row>
@@ -74,7 +82,7 @@ function AdminProductRow({ product }) {
         {id >= 10 && "0" + id}
         {id >= 100 && id}
       </StyledId>
-      <Img src={pictures.images[0]} />
+      <Img src={images[0]} />
       <Product>{name}</Product>
       <div>{categories.name}</div>
       <Price>{formatCurrency(price)}</Price>

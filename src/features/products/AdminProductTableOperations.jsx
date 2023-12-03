@@ -14,6 +14,15 @@ function ProductTableOperations() {
         ]}
       />
 
+      <Filter
+        filterField="discount"
+        options={[
+          { value: "all", label: "All" },
+          { value: "no-discount", label: "No Discount" },
+          { value: "with-discount", label: "With Discount" },
+        ]}
+      />
+
       <SortBy
         options={[
           { value: "name-asc", label: "Sort by name (A-Z)" },
@@ -22,8 +31,6 @@ function ProductTableOperations() {
           { value: "price-desc", label: "Sort by price (high first)" },
           { value: "stock-asc", label: "Sort by stock (low first)" },
           { value: "stock-desc", label: "Sort by stock (high first)" },
-          { value: "discount-asc", label: "Sort by discount (low first)" },
-          { value: "discount-desc", label: "Sort by discount (high first)" },
         ]}
       />
     </TableOperations>
