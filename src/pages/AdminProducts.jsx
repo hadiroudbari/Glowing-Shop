@@ -10,7 +10,7 @@ function AdminProducts() {
     <>
       <Row type="horizontal">
         <Row type="horizontal">
-          <Heading as="h1">Product List</Heading>
+          <Heading as="h1">All Products</Heading>
           <AddProduct />
         </Row>
         <ProductTableOperations />

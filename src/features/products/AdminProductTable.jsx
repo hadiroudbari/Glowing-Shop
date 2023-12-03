@@ -11,10 +11,13 @@ function AdminProductTable() {
   if (isLoading) return <Spinner />;
   if (!products?.length) return <Empty resourceName="products" />;
 
+  const sortedProducts = products.sort((a, b) => a.id - b.id);
+
   return (
     <Menus>
-      <Table columns="0.6fr 2.2fr 1.5fr 1fr 1fr 1fr 1fr 1fr">
+      <Table columns="0.3fr 0.6fr 3fr 1.5fr 1fr 1fr 1fr 1fr 1fr">
         <Table.Header>
+          <div></div>
           <div></div>
           <div>Product</div>
           <div>Category</div>
@@ -26,7 +29,7 @@ function AdminProductTable() {
         </Table.Header>
 
         <Table.Body
-          data={products}
+          data={sortedProducts}
           render={(product) => (
             <AdminProductRow product={product} key={product.id} />
           )}

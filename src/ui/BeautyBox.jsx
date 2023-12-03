@@ -47,12 +47,12 @@ function BeautyBox({ type, src, title, text }) {
       <StyledBeautyBox type={type}>
         <BeautyItem src={src} title={title} text={text} type={type} />
         <StyledProductsBox>
-          <ShopProductItem src="./images/Products/product-01-330x440.jpg" />
-          <ShopProductItem src="./images/Products/product-02-330x440.jpg" />
-          <ShopProductItem src="./images/Products/product-03-330x440.jpg" />
-          <ShopProductItem src="./images/Products/product-04-330x440.jpg" />
-          <ShopProductItem src="./images/Products/product-05-330x440.jpg" />
-          <ShopProductItem src="./images/Products/product-06-330x440.jpg" />
+          <ShopProductItem src="./images/Products/product-01.jpg" />
+          <ShopProductItem src="./images/Products/product-02.jpg" />
+          <ShopProductItem src="./images/Products/product-03.jpg" />
+          <ShopProductItem src="./images/Products/product-04.jpg" />
+          <ShopProductItem src="./images/Products/product-05.jpg" />
+          <ShopProductItem src="./images/Products/product-06.jpg" />
         </StyledProductsBox>
       </StyledBeautyBox>
     </>

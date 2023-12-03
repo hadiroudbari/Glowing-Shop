@@ -56,23 +56,35 @@ const Status = styled.div`
   background-color: ${(props) =>
     props.status === "archived" && "var(--color-yellow-700);"};
   background-color: ${(props) =>
-    props.status === "disabled" && "var(--color-red-800);"};
+    props.status === "disabled" && "var(--color-red-600);"};
+`;
+
+const StyledId = styled.div`
+  font-weight: 900;
 `;
 
 function AdminProductRow({ product }) {
+  const { id, name, pictures, categories, price, stock, discount, status } =
+    product;
+
   return (
     <Table.Row>
-      <Img src={product.pictures.images[0]} />
-      <Product>{product.name}</Product>
-      <div>{product.categories.name}</div>
-      <Price>{formatCurrency(product.price)}</Price>
-      <Stock>{product.stock}</Stock>
-      {product.discount ? (
-        <Discount>{formatCurrency(product.discount)}</Discount>
+      <StyledId>
+        {id < 10 && "00" + id}
+        {id >= 10 && "0" + id}
+        {id >= 100 && id}
+      </StyledId>
+      <Img src={pictures.images[0]} />
+      <Product>{name}</Product>
+      <div>{categories.name}</div>
+      <Price>{formatCurrency(price)}</Price>
+      <Stock>{stock}</Stock>
+      {discount ? (
+        <Discount>{formatCurrency(discount)}</Discount>
       ) : (
         <span>&mdash;</span>
       )}
-      <Status status={product.status}>{product.status}</Status>
+      <Status status={status}>{status}</Status>
       <div>
         <Modal>
           <Menus.Menu>
