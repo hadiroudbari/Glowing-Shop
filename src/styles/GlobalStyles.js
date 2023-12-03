@@ -93,6 +93,7 @@ const GlobalStyles = createGlobalStyle`
   --color-brand-700: #37b24d;
   --color-brand-800: #2f9e44;
   --color-brand-900: #2b8a3e;
+  --color-brand-950: #4e7661;
 
   --border-radius-tiny: 3px;
   --border-radius-sm: 5px;
@@ -131,6 +132,8 @@ input,
 button,
 textarea,
 select {
+  border: none;
+  background-color: transparent;
   font: inherit;
   color: inherit;
 }
@@ -153,7 +156,7 @@ input:focus,
 button:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid var(--color-brand-600);
+  outline: 2px solid var(--color-brand-900);
   outline-offset: -1px;
 }
 
@@ -184,6 +187,7 @@ h6 {
 
 img {
   max-width: 100%;
+  height: 100%;
 
   /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));

@@ -1,10 +1,18 @@
+import styled from "styled-components";
+
 import Navbar from "../ui/Navbar";
 
-function Header() {
+const StyledHeader = styled.header`
+  height: ${(props) => (props.type === "home" ? "100vh" : "20vh")};
+  position: relative;
+`;
+
+function Header({ children, type }) {
   return (
-    <div>
-      Header : <Navbar />
-    </div>
+    <StyledHeader type={type}>
+      <Navbar />
+      {children}
+    </StyledHeader>
   );
 }
 
