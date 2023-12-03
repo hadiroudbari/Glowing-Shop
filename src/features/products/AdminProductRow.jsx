@@ -39,22 +39,40 @@ const Discount = styled.div`
   color: var(--color-brand-900);
 `;
 
-function AdminProductRow() {
-  const discount = 15;
+const Status = styled.div`
+  font-family: "Urbanist";
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.2rem;
 
+  width: fit-content;
+  text-align: center;
+  padding: 0.5rem 1.4rem;
+
+  border-radius: 5rem;
+  color: var(--color-grey-0);
+  background-color: ${(props) =>
+    props.status === "active" && "var(--color-brand-900);"};
+  background-color: ${(props) =>
+    props.status === "archived" && "var(--color-yellow-700);"};
+  background-color: ${(props) =>
+    props.status === "disabled" && "var(--color-red-800);"};
+`;
+
+function AdminProductRow({ product }) {
   return (
     <Table.Row>
-      <Img src="../images/Products/product-01-330x440.jpg" />
-      <Product>Flowers cotton dress</Product>
-      <div>BodySplash</div>
-      <Price>{formatCurrency("23")}</Price>
-      <Stock>50</Stock>
-      {discount ? (
-        <Discount>{formatCurrency(discount)}</Discount>
+      <Img src={product.pictures.images[0]} />
+      <Product>{product.name}</Product>
+      <div>{product.categories.name}</div>
+      <Price>{formatCurrency(product.price)}</Price>
+      <Stock>{product.stock}</Stock>
+      {product.discount ? (
+        <Discount>{formatCurrency(product.discount)}</Discount>
       ) : (
         <span>&mdash;</span>
       )}
-      <div>Active</div>
+      <Status status={product.status}>{product.status}</Status>
       <div>
         <Modal>
           <Menus.Menu>
