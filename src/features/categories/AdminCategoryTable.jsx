@@ -9,7 +9,7 @@ function AdminCategoryTable() {
   const { categories, isLoading } = useCategories();
 
   if (isLoading) return <Spinner />;
-  if (!categories?.length) return <Empty resourceName="products" />;
+  if (!categories?.length) return <Empty resourceName="categories" />;
 
   const sortedProducts = categories.sort((a, b) => a.id - b.id);
 
