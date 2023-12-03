@@ -35,22 +35,22 @@ function CategoryBox() {
       <CategoryGrid>
         <CategoryItem style={{ gridArea: "item-1" }}>
           <img src="./images/Categories/banner-18.jpg" alt="Categories" />
-          <Button>Skincare</Button>
+          <Button bg="light">Skincare</Button>
         </CategoryItem>
 
         <CategoryItem style={{ gridArea: "item-2" }}>
           <img src="./images/Categories/banner-15.jpg" alt="Categories" />
-          <Button>Bodycare</Button>
+          <Button bg="light">Bodycare</Button>
         </CategoryItem>
 
         <CategoryItem style={{ gridArea: "item-3" }}>
           <img src="./images/Categories/banner-16.jpg" alt="Categories" />
-          <Button>Accessories</Button>
+          <Button bg="light">Accessories</Button>
         </CategoryItem>
 
         <CategoryItem style={{ gridArea: "item-4" }}>
           <img src="./images/Categories/banner-17.jpg" alt="Categories" />
-          <Button>Haircare</Button>
+          <Button bg="light">Haircare</Button>
         </CategoryItem>
       </CategoryGrid>
     </>

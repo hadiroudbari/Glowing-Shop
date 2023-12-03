@@ -45,7 +45,7 @@ function BeautyItem({ src, title, text, type }) {
       <StyledBeautyItemTextBox>
         <StyledBeautyItemSpan>{title}</StyledBeautyItemSpan>
         <StyledBeautyItemText>{text}</StyledBeautyItemText>
-        <Button>Explore More</Button>
+        <Button bg="light">Explore More</Button>
       </StyledBeautyItemTextBox>
     </StyledBeautyItemBox>
   );
