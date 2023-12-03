@@ -15,16 +15,16 @@ import Checkout from "./pages/ShopCheckout";
 import ProductDetails from "./pages/ShopProductDetails";
 import Profile from "./pages/CustomerProfile";
 import PageNotFound from "./pages/PageNotFound";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import AdminLayout from "./ui/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProducts from "./pages/AdminProducts";
-import AdminOrders from "./pages/AdminOrders";
 import AdminCategories from "./pages/AdminCategories";
-import AdminOrder from "./pages/AdminOrder";
+import AdminOrders from "./pages/AdminOrders";
+import AdminOrderDetails from "./pages/AdminOrderDetails";
+import AdminUsers from "./pages/AdminUsers";
 import AdminSettings from "./pages/AdminSettings";
-import AdminRegister from "./pages/AdminRegister";
 import AdminLogin from "./pages/AdminLogin";
-import AdminLayout from "./ui/AdminLayout";
-import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,12 +65,12 @@ function App() {
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products" element={<AdminProducts />} />
             <Route path="orders" element={<AdminOrders />} />
-            <Route path="orders/:orderId" element={<AdminOrder />} />
+            <Route path="orders/:orderId" element={<AdminOrderDetails />} />
             <Route path="categories" element={<AdminCategories />} />
+            <Route path="users" element={<AdminUsers />} />
             <Route path="settings" element={<AdminSettings />} />
           </Route>
           <Route path="login" element={<AdminLogin />} />
-          <Route path="register" element={<AdminRegister />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
