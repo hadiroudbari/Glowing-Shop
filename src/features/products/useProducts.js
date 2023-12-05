@@ -36,7 +36,7 @@ export function useProducts() {
   // QUERY
   const {
     isLoading,
-    data: { data: products, count } = {},
+    data: { products, count } = {},
     error,
   } = useQuery({
     queryKey: ["products", sortBy, filter, topCategory, category, page],

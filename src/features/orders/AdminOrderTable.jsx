@@ -2,11 +2,12 @@ import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import Spinner from "../../ui/Spinner";
 import Empty from "../../ui/Empty";
+import Pagination from "../../ui/Pagination";
 import AdminOrderRow from "./AdminOrderRow";
 import { useOrders } from "./useOrders";
 
 function AdminOrderTable() {
-  const { orders, isLoading } = useOrders();
+  const { orders, isLoading, count } = useOrders();
 
   if (isLoading) return <Spinner />;
   if (!orders?.length) return <Empty resourceName="orders" />;
@@ -29,6 +30,7 @@ function AdminOrderTable() {
           render={(order) => <AdminOrderRow order={order} key={order.id} />}
         ></Table.Body>
       </Table>
+      <Pagination count={count} />
     </Menus>
   );
 }

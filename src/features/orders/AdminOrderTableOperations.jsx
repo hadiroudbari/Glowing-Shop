@@ -8,6 +8,7 @@ function AdminOrderTableOperations() {
       <Filter
         filterField="status"
         options={[
+          { value: "all", label: "All" },
           { value: "received", label: "Received" },
           { value: "pending", label: "Pending" },
           { value: "cancel", label: "Cancel" },
@@ -15,13 +16,16 @@ function AdminOrderTableOperations() {
       />
 
       <SortBy
+        sortValue="sortBy"
         options={[
-          { value: "name-asc", label: "Sort by name (A-Z)" },
-          { value: "name-desc", label: "Sort by name (Z-A)" },
-          { value: "price-asc", label: "Sort by price (low first)" },
-          { value: "price-desc", label: "Sort by price (high first)" },
-          { value: "date-asc", label: "Sort by date (low first)" },
-          { value: "date-desc", label: "Sort by date (high first)" },
+          { value: "", label: "Sort by" },
+          { value: "totalPrice-asc", label: "Sort by price (low first)" },
+          {
+            value: "totalPrice-desc",
+            label: "Sort by price (high first)",
+          },
+          { value: "created_at-asc", label: "Sort by date (low first)" },
+          { value: "created_at-desc", label: "Sort by date (high first)" },
         ]}
       />
     </TableOperations>

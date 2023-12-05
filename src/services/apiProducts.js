@@ -43,12 +43,12 @@ export async function getProducts({
     query = query.range(from, to);
   }
 
-  const { data, error, count } = await query;
+  const { data: products, error, count } = await query;
 
   if (error) {
     console.error(error);
     throw new Error("Products could not be loaded");
   }
 
-  return { data, count };
+  return { products, count };
 }

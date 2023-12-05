@@ -1,7 +1,6 @@
 import AdminOrderTable from "../features/orders/AdminOrderTable";
 import AdminOrderTableOperations from "../features/orders/AdminOrderTableOperations";
 import Heading from "../ui/Heading";
-import Pagination from "../ui/Pagination";
 import Row from "../ui/Row";
 
 function AdminOrders() {
@@ -14,7 +13,6 @@ function AdminOrders() {
 
       <Row>
         <AdminOrderTable />
-        <Pagination count={50} />
       </Row>
     </>
   );
