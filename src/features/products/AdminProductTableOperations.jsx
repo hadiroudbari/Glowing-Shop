@@ -26,11 +26,6 @@ function ProductTableOperations() {
 
   if (isLoading || isLoading2) return;
 
-  // console.log(currentTopCategory);
-  // console.log(topCategories);
-  console.log(categories);
-  // console.log(currentFilter);
-
   return (
     <TableOperations>
       <Filter

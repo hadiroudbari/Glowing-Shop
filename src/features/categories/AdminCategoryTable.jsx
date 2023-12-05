@@ -2,16 +2,15 @@ import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import Spinner from "../../ui/Spinner";
 import Empty from "../../ui/Empty";
+import Pagination from "../../ui/Pagination";
 import AdminCategoryRow from "./AdminCategoryRow";
 import { useCategories } from "./useCategories";
 
 function AdminCategoryTable() {
-  const { categories, isLoading } = useCategories();
+  const { categories, isLoading, count } = useCategories();
 
   if (isLoading) return <Spinner />;
   if (!categories?.length) return <Empty resourceName="categories" />;
-
-  const sortedProducts = categories.sort((a, b) => a.id - b.id);
 
   return (
     <Menus>
@@ -25,12 +24,13 @@ function AdminCategoryTable() {
         </Table.Header>
 
         <Table.Body
-          data={sortedProducts}
+          data={categories}
           render={(category) => (
             <AdminCategoryRow category={category} key={category.id} />
           )}
         ></Table.Body>
       </Table>
+      <Pagination count={count} />
     </Menus>
   );
 }
