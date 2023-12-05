@@ -1,15 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCategories, getTopCategories } from "../../services/apiCategories";
+import {
+  getCategories,
+  getTopCategories,
+  getfilterCategories,
+} from "../../services/apiCategories";
 import { useSearchParams } from "react-router-dom";
 
 export function useCategories() {
   const [searchParams] = useSearchParams();
-
-  // FILTER
-  const topCategoryId = searchParams.get("sortByTopCategory") || "";
-  const topCategory = !topCategoryId
-    ? null
-    : { field: "topCategoryId", value: topCategoryId, method: "eq" };
 
   // SORT
   const sortByRaw = searchParams.get("sortBy") || "id-asc";
@@ -24,8 +22,8 @@ export function useCategories() {
     data: { categories, count } = {},
     error,
   } = useQuery({
-    queryKey: ["categories", topCategory, sortBy, page],
-    queryFn: () => getCategories({ topCategory, sortBy, page }),
+    queryKey: ["categories", sortBy, page],
+    queryFn: () => getCategories({ sortBy, page }),
   });
 
   return { isLoading, error, categories, count };
@@ -42,4 +40,25 @@ export function useTopCategories() {
   });
 
   return { isLoading, error, topCategories };
+}
+
+export function useFilterCategories() {
+  const [searchParams] = useSearchParams();
+
+  // FILTER
+  const topCategoryId = searchParams.get("sortByTopCategory") || "";
+  const topCategory = !topCategoryId
+    ? null
+    : { field: "topCategoryId", value: topCategoryId, method: "eq" };
+
+  const {
+    isLoading,
+    data: filterCategories,
+    error,
+  } = useQuery({
+    queryKey: ["filterCategories", topCategory],
+    queryFn: () => getfilterCategories({ topCategory }),
+  });
+
+  return { isLoading, error, filterCategories };
 }

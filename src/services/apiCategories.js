@@ -1,17 +1,10 @@
 import { PAGE_SIZE } from "../utils/constants";
 import supabase from "./supabase";
 
-export async function getCategories({ topCategory, sortBy, page }) {
+export async function getCategories({ sortBy, page }) {
   let query = supabase
     .from("categories")
     .select("id, name, icon, topCategories(name)", { count: "exact" });
-
-  // FILTER TOP-CATEGORY
-  if (topCategory)
-    query = query[topCategory.method || "eq"](
-      topCategory.field,
-      topCategory.value
-    );
 
   // SORT CATEGORY
   if (sortBy)
@@ -48,4 +41,24 @@ export async function getTopCategories() {
   }
 
   return topCategories;
+}
+
+export async function getfilterCategories({ topCategory }) {
+  let query = supabase.from("categories").select("id, name");
+
+  // FILTER TOP-CATEGORY
+  if (topCategory)
+    query = query[topCategory.method || "eq"](
+      topCategory.field,
+      topCategory.value
+    );
+
+  const { data: filterCategories, error } = await query;
+
+  if (error) {
+    console.error(error);
+    throw new Error("Categories could not be loaded");
+  }
+
+  return filterCategories;
 }

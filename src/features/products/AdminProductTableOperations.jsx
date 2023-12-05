@@ -1,13 +1,16 @@
 import TableOperations from "../../ui/TableOperations";
 import Filter from "../../ui/Filter";
 import SortBy from "../../ui/SortBy";
-import { useCategories, useTopCategories } from "../categories/useCategories";
+import {
+  useFilterCategories,
+  useTopCategories,
+} from "../categories/useCategories";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 
 function ProductTableOperations() {
   const { topCategories, isLoading } = useTopCategories();
-  const { categories, isLoading: isLoading2 } = useCategories();
+  const { filterCategories, isLoading: isLoading2 } = useFilterCategories();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get("searchBy");
@@ -53,7 +56,7 @@ function ProductTableOperations() {
               sortValue="sortByCategory"
               options={[
                 { value: "", label: "Category" },
-                ...categories.map((category) => {
+                ...filterCategories.map((category) => {
                   return { value: category.id, label: category.name };
                 }),
               ]}
