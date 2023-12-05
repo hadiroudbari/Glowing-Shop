@@ -28,6 +28,11 @@ const Price = styled.div`
   font-weight: 800;
 `;
 
+const Category = styled.div`
+  font-family: "Urbanist";
+  font-weight: 700;
+`;
+
 const Stock = styled.div`
   font-family: "Urbanist";
   font-weight: 600;
@@ -69,6 +74,7 @@ function AdminProductRow({ product }) {
     name,
     pictures: { images },
     categories,
+    topCategories,
     price,
     stock,
     discount,
@@ -84,7 +90,9 @@ function AdminProductRow({ product }) {
       </StyledId>
       <Img src={images[0]} />
       <Product>{name}</Product>
-      <div>{categories.name}</div>
+      <div>
+        {topCategories.name} / <br /> <Category>{categories.name}</Category>
+      </div>
       <Price>{formatCurrency(price)}</Price>
       <Stock>{stock}</Stock>
       {discount ? (

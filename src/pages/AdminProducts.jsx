@@ -2,7 +2,6 @@ import AddProduct from "../features/products/AdminAddProduct";
 import AdminProductTable from "../features/products/AdminProductTable";
 import ProductTableOperations from "../features/products/AdminProductTableOperations";
 import Heading from "../ui/Heading";
-import Pagination from "../ui/Pagination";
 import Row from "../ui/Row";
 
 function AdminProducts() {
@@ -18,7 +17,6 @@ function AdminProducts() {
 
       <Row>
         <AdminProductTable />
-        <Pagination count={50} />
       </Row>
     </>
   );
