@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LogoBox = styled.div`
-  width: 200px;
+  width: 265px;
   display: flex;
   align-items: center;
   gap: 1rem;

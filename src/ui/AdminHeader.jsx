@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { HiLogout } from "react-icons/hi";
 import { HiOutlineHome } from "react-icons/hi2";
+import { NavLink } from "react-router-dom";
 
 import UserAvatar from "../features/authentication/AdminUserAvatar";
 import AdminSearch from "../features/search/AdminSearch";
 import Row from "./Row";
-import { NavLink } from "react-router-dom";
+import AdminLogout from "../features/authentication/AdminLogout";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -15,12 +15,6 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const LogoutBtn = styled.button`
-  border: 1px solid var(--color-grey-900);
-  border-radius: 50%;
-  padding: 5px;
 `;
 
 const HomeBtn = styled(NavLink)`
@@ -36,9 +30,7 @@ function AdminHeader() {
       <AdminSearch />
       <Row type="horizontal" gap="1.6">
         <UserAvatar />
-        <LogoutBtn>
-          <HiLogout />
-        </LogoutBtn>
+        <AdminLogout />
         <HomeBtn to="/home">
           <HiOutlineHome />
         </HomeBtn>

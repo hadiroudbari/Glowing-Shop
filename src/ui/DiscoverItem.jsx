@@ -63,7 +63,7 @@ function DiscoverItem({ type, src, title, text, btn }) {
             <StyledDiscoverItemHeader>{title}</StyledDiscoverItemHeader>
           </>
         )}
-        <Button>{btn}</Button>
+        <Button bg="light">{btn}</Button>
       </StyledDiscoverItemTextBox>
     </StyledDiscoverItemBox>
   );
