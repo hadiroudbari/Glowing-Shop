@@ -57,7 +57,7 @@ const Status = styled.div`
   border-radius: 5rem;
   color: var(--color-grey-0);
   background-color: ${(props) =>
-    props.status === "active" && "var(--color-brand-900);"};
+    props.status === "active" && "var(--color-indigo-700);"};
   background-color: ${(props) =>
     props.status === "archived" && "var(--color-yellow-700);"};
   background-color: ${(props) =>
