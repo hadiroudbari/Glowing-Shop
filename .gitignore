@@ -12,6 +12,7 @@ dist
 images
 dist-ssr
 *.local
+supabase.md
 
 # Editor directories and files
 .vscode/*
