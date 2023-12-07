@@ -6,6 +6,7 @@ import {
   HiRectangleGroup,
   HiShoppingBag,
   HiShoppingCart,
+  HiUsers,
 } from "react-icons/hi2";
 
 const NavList = styled.ul`
@@ -79,6 +80,12 @@ function AdminNav() {
           <StyledNavLink to="orders">
             <HiShoppingCart />
             <span>Orders</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="users">
+            <HiUsers />
+            <span>Users</span>
           </StyledNavLink>
         </li>
         <li>

@@ -2,19 +2,22 @@ import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import Empty from "../../ui/Empty";
 import Spinner from "../../ui/Spinner";
+import Pagination from "../../ui/Pagination";
 import AdminProductRow from "./AdminProductRow";
 import { useProducts } from "./useProducts";
 
 function AdminProductTable() {
-  const { products, isLoading } = useProducts();
+  const { products, isLoading, count } = useProducts();
 
   if (isLoading) return <Spinner />;
+
   if (!products?.length) return <Empty resourceName="products" />;
 
   return (
     <Menus>
-      <Table columns="0.6fr 2.2fr 1.5fr 1fr 1fr 1fr 1fr 1fr">
+      <Table columns="0.3fr 0.6fr 3fr 2fr 1fr 1fr 1fr 1fr 1fr">
         <Table.Header>
+          <div></div>
           <div></div>
           <div>Product</div>
           <div>Category</div>
@@ -32,6 +35,7 @@ function AdminProductTable() {
           )}
         ></Table.Body>
       </Table>
+      <Pagination count={count} />
     </Menus>
   );
 }

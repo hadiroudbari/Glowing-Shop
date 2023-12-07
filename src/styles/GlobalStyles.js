@@ -23,13 +23,14 @@ const GlobalStyles = createGlobalStyle`
   --color-green-100: #dcfce7;
   --color-green-700: #15803d;
   --color-yellow-100: #fef9c3;
-  --color-yellow-700: #a16207;
+  --color-yellow-700: #f59f00;
   --color-silver-100: #e5e7eb;
   --color-silver-700: #374151;
   --color-indigo-100: #e0e7ff;
   --color-indigo-700: #4338ca;
 
   --color-red-100: #fee2e2;
+  --color-red-600: #e03131;
   --color-red-700: #b91c1c;
   --color-red-800: #991b1b;
 

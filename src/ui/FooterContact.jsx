@@ -25,15 +25,16 @@ const StyledContactInputBox = styled.div`
 `;
 
 const StyledContactInput = styled.input`
-  height: 48px;
+  height: 46px;
   width: 350px;
 
-  margin: 2rem 0 1rem;
+  margin: 2.1rem 0 1rem;
   margin-right: -1px;
   padding: 0 1rem;
 
-  border: none;
-  border-radius: var(--border-radius-tiny);
+  background-color: var(--color-grey-0);
+  border-top-left-radius: var(--border-radius-tiny);
+  border-bottom-left-radius: var(--border-radius-tiny);
 `;
 
 function FooterContact() {
