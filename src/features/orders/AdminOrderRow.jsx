@@ -43,7 +43,7 @@ const Status = styled.div`
   border-radius: 5rem;
   color: var(--color-grey-0);
   background-color: ${(props) =>
-    props.status === "received" && "var(--color-brand-900);"};
+    props.status === "received" && "var(--color-indigo-700);"};
   background-color: ${(props) =>
     props.status === "pending" && "var(--color-yellow-700);"};
   background-color: ${(props) =>
