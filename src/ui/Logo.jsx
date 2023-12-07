@@ -1,6 +1,7 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const LogoBox = styled.div`
+const LogoBox = styled(NavLink)`
   width: 265px;
   display: flex;
   align-items: center;
@@ -19,7 +20,7 @@ const StyledText = styled.h1`
 
 function Logo() {
   return (
-    <LogoBox>
+    <LogoBox to="/home">
       <StyledImg src="/logo.png" alt="LOGO" />
       <StyledText>GLOWING</StyledText>
     </LogoBox>
