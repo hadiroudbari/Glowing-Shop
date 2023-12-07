@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { HiPencil, HiTrash } from "react-icons/hi2";
+import { HiEye, HiTrash } from "react-icons/hi2";
 
 import { formatCurrency } from "../../utils/helpers";
 import Table from "../../ui/Table";
@@ -83,7 +83,7 @@ function AdminOrderRow({ order }) {
 
             <Menus.List id={1}>
               <Modal.Open opens="edit">
-                <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                <Menus.Button icon={<HiEye />}>View Details</Menus.Button>
               </Modal.Open>
 
               <Modal.Open opens="delete">
