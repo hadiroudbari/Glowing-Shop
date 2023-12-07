@@ -119,7 +119,7 @@ function AdminLoginForm() {
             setShowPassword((prev) => !prev);
           }}
         >
-          {!showPassword ? <HiEye /> : <HiEyeOff />}
+          {showPassword ? <HiEye /> : <HiEyeOff />}
         </Eye>
       </PasswordBox>
       <FormRowVertical>
