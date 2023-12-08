@@ -73,6 +73,7 @@ function AdminProductRow({ product }) {
     id,
     name,
     pictures: { images },
+    image,
     categories,
     topCategories,
     price,
@@ -88,7 +89,7 @@ function AdminProductRow({ product }) {
         {id >= 10 && "0" + id}
         {id >= 100 && id}
       </StyledId>
-      <Img src={images[0]} />
+      <Img src={images?.[0] || image} />
       <Product>{name}</Product>
       <div>
         {topCategories.name} / <br /> <Category>{categories.name}</Category>

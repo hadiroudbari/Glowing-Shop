@@ -8,6 +8,9 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import FormRow from "../../ui/FormRow";
 import Textarea from "../../ui/Textarea";
+import SpinnerMini from "../../ui/SpinnerMini";
+import { useFilterCategories } from "../categories/useCategories";
+import { useCreateProduct } from "./useCreateProduct";
 
 const Select = styled.select`
   font-size: 1.4rem;
@@ -34,18 +37,40 @@ const StyledFormRow = styled.div`
 
 function ProductForm({ onCloseModal }) {
   const [description, setDescription] = useState("");
+  const [categoryId, setCategoryId] = useState(0);
+
+  const { filterCategories, isLoading } = useFilterCategories(categoryId);
+  const { createProduct, isCreating } = useCreateProduct();
+
+  const isWorking = isCreating;
 
   const {
     register,
     handleSubmit,
     // reset,
     getValues,
+    clearErrors,
     formState: { errors },
   } = useForm();
 
-  function onSubmit() {}
+  function onSubmit(data) {
+    const image =
+      typeof data.pictures === "string" ? data.pictures : data.pictures[0];
 
-  function onError() {}
+    const newData = { ...data, image, description };
+
+    createProduct(newData, {
+      onSuccess: (data) => {
+        console.log("done");
+        // reset();
+        // onCloseModal?.();
+      },
+    });
+  }
+
+  function onError(error) {
+    console.log(error);
+  }
 
   return (
     <Form
@@ -56,7 +81,7 @@ function ProductForm({ onCloseModal }) {
         <Input
           type="text"
           id="name"
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register("name", {
             required: "This field is required",
           })}
@@ -65,9 +90,14 @@ function ProductForm({ onCloseModal }) {
 
       <FormRow label="Top Category" error={errors?.topCategoryId?.message}>
         <Select
+          disabled={isWorking}
           id="topCategoryId"
           {...register("topCategoryId", {
             required: "This field is required",
+            onChange: (e) => {
+              clearErrors("categoryId");
+              setCategoryId(Number(e.target.value));
+            },
           })}
         >
           <option value="">Select Top Category</option>
@@ -79,30 +109,48 @@ function ProductForm({ onCloseModal }) {
       </FormRow>
 
       <FormRow label="Category" error={errors?.categoryId?.message}>
-        <Select
-          id="categoryId"
-          {...register("categoryId", {
-            required: "This field is required",
-          })}
-        >
-          <option value="">Select Category</option>
-          <option value={1}>Face Oil</option>
-          <option value={2}>Toner</option>
-          <option value={3}>Serum</option>
-        </Select>
+        {isLoading ? (
+          <SpinnerMini />
+        ) : (
+          <Select
+            defaultValue={categoryId}
+            disabled={!filterCategories.length || isWorking}
+            id="categoryId"
+            {...register("categoryId", {
+              required:
+                +getValues().topCategoryId === 4
+                  ? false
+                  : "This field is required",
+            })}
+          >
+            {filterCategories.length ? (
+              <option value="">Select Category</option>
+            ) : (
+              <option value="">No Category Found</option>
+            )}
+            {filterCategories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </Select>
+        )}
       </FormRow>
 
       <FormRow label="Price" error={errors?.price?.message}>
         <Input
           type="number"
           id="price"
-          defaultValue={0}
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register("price", {
             required: "This field is required",
             min: {
               value: 0,
               message: "Price should be at least 0",
+            },
+            max: {
+              value: 1000,
+              message: "Price should be less than 1000",
             },
           })}
         />
@@ -112,13 +160,16 @@ function ProductForm({ onCloseModal }) {
         <Input
           type="number"
           id="stock"
-          defaultValue={0}
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register("stock", {
             required: "This field is required",
             min: {
               value: 0,
               message: "Stock should be at least 0",
+            },
+            max: {
+              value: 1000,
+              message: "Stock should be less than 1000",
             },
           })}
         />
@@ -128,12 +179,11 @@ function ProductForm({ onCloseModal }) {
         <Input
           type="number"
           id="discount"
-          // disabled={isWorking}
-          defaultValue={0}
+          disabled={isWorking}
           {...register("discount", {
             required: "This field is required",
             validate: (value) =>
-              value <= getValues().price ||
+              Number(value) <= Number(getValues().price) ||
               "Discount should be less than price",
           })}
         />
@@ -142,6 +192,7 @@ function ProductForm({ onCloseModal }) {
       <FormRow label="Status" error={errors?.status?.message}>
         <Select
           id="status"
+          disabled={isWorking}
           {...register("status", {
             required: "This field is required",
           })}
@@ -162,7 +213,7 @@ function ProductForm({ onCloseModal }) {
         <FileInput
           id="pictures"
           accept="image/*"
-          // disabled={isWorking}
+          disabled={isWorking}
           {...register("pictures", {
             required: "This field is required",
           })}
@@ -173,7 +224,9 @@ function ProductForm({ onCloseModal }) {
         <Button bg="white" type="reset" onClick={() => onCloseModal?.()}>
           Cancel
         </Button>
-        <Button bg="green">Create new Product</Button>
+        <Button bg="green">
+          {isWorking ? <SpinnerMini /> : "Create new Product"}
+        </Button>
       </FormRow>
     </Form>
   );

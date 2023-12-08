@@ -4,7 +4,7 @@ import { useRef } from "react";
 function Textarea({ value, onChange }) {
   const editorRef = useRef(null);
 
-  onChange(editorRef.current.targetElm.value);
+  onChange(editorRef?.current?.targetElm?.value);
 
   return (
     <Editor
@@ -13,7 +13,7 @@ function Textarea({ value, onChange }) {
       }}
       id="description"
       apiKey="1lzjz4gz78piabxlh6q5ym2s14cy9rzqlq0b3gnta9ra4am1"
-      initialValue="<p>Write Something For Product ...</p>"
+      initialValue="<p></p>"
       init={{
         height: 200,
         menubar: false,

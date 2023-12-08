@@ -43,14 +43,14 @@ export async function getTopCategories() {
   return topCategories;
 }
 
-export async function getfilterCategories({ topCategory }) {
+export async function getfilterCategories({ topCategory, id }) {
   let query = supabase.from("categories").select("id, name");
 
   // FILTER TOP-CATEGORY
-  if (topCategory)
-    query = query[topCategory.method || "eq"](
-      topCategory.field,
-      topCategory.value
+  if (topCategory || id)
+    query = query[topCategory?.method || "eq"](
+      topCategory?.field || "topCategoryId",
+      topCategory?.value || id
     );
 
   const { data: filterCategories, error } = await query;
@@ -58,6 +58,10 @@ export async function getfilterCategories({ topCategory }) {
   if (error) {
     console.error(error);
     throw new Error("Categories could not be loaded");
+  }
+
+  if (id === 0) {
+    return [];
   }
 
   return filterCategories;
