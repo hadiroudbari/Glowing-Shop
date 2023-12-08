@@ -7,6 +7,7 @@ import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import ProductForm from "./AdminProductForm";
+import { useDeleteProduct } from "./useDeleteProduct";
 
 const Img = styled.img`
   display: block;
@@ -69,6 +70,8 @@ const StyledId = styled.div`
 `;
 
 function AdminProductRow({ product }) {
+  const { deleteProduct, isDeleting } = useDeleteProduct();
+
   const {
     id,
     name,
@@ -113,7 +116,9 @@ function AdminProductRow({ product }) {
               </Modal.Open>
 
               <Modal.Open opens="delete">
-                <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                <Menus.Button icon={<HiTrash />} disabled={isDeleting}>
+                  Delete
+                </Menus.Button>
               </Modal.Open>
             </Menus.List>
 
@@ -122,7 +127,11 @@ function AdminProductRow({ product }) {
             </Modal.Window>
 
             <Modal.Window name="delete">
-              <ConfirmDelete resourceName="cabins" />
+              <ConfirmDelete
+                resourceName="product"
+                disabled={isDeleting}
+                onConfirm={() => deleteProduct(id)}
+              />
             </Modal.Window>
           </Menus.Menu>
         </Modal>
