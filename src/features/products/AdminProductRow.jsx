@@ -6,7 +6,7 @@ import Table from "../../ui/Table";
 import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import CreateProductForm from "./AdminCreateProductForm";
+import ProductForm from "./AdminProductForm";
 
 const Img = styled.img`
   display: block;
@@ -117,7 +117,7 @@ function AdminProductRow({ product }) {
             </Menus.List>
 
             <Modal.Window name="edit">
-              <CreateProductForm cabinToEdit="" />
+              <ProductForm cabinToEdit="" />
             </Modal.Window>
 
             <Modal.Window name="delete">

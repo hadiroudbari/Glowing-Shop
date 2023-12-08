@@ -104,6 +104,7 @@ const GlobalStyles = createGlobalStyle`
   
 }
 
+
 *,
 *::before,
 *::after {

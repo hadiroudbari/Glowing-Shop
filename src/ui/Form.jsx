@@ -16,9 +16,19 @@ const Form = styled.form`
     props.type === "modal" &&
     css`
       width: 80rem;
+      height: 50rem;
     `}
     
-  overflow: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  overflow-x: hidden;
+  overflow-y: auto;
   font-size: 1.4rem;
 `;
 
