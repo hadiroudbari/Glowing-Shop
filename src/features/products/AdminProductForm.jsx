@@ -47,12 +47,8 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
     id: productId,
     description: productDescription,
     name,
-    pictures,
-    price,
-    stock,
-    discount,
-    status,
     image,
+    status,
   } = productToEdit;
 
   const isUpdateSession = Boolean(productId);
@@ -68,12 +64,8 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
     categoryId: defaultcategoryId,
     topCategoryId: defaultTopCategoryId,
     name,
-    pictures,
-    price,
-    stock,
-    discount,
-    status,
     image,
+    status,
     description: productDescription,
   };
 
@@ -185,58 +177,6 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
             ))}
           </Select>
         )}
-      </FormRow>
-
-      <FormRow label="Price" error={errors?.price?.message}>
-        <Input
-          type="number"
-          id="price"
-          disabled={isWorking}
-          {...register("price", {
-            required: "This field is required",
-            min: {
-              value: 0,
-              message: "Price should be at least 0",
-            },
-            max: {
-              value: 1000,
-              message: "Price should be less than 1000",
-            },
-          })}
-        />
-      </FormRow>
-
-      <FormRow label="Stock" error={errors?.stock?.message}>
-        <Input
-          type="number"
-          id="stock"
-          disabled={isWorking}
-          {...register("stock", {
-            required: "This field is required",
-            min: {
-              value: 0,
-              message: "Stock should be at least 0",
-            },
-            max: {
-              value: 1000,
-              message: "Stock should be less than 1000",
-            },
-          })}
-        />
-      </FormRow>
-
-      <FormRow label="Discount" error={errors?.discount?.message}>
-        <Input
-          type="number"
-          id="discount"
-          disabled={isWorking}
-          {...register("discount", {
-            required: "This field is required",
-            validate: (value) =>
-              Number(value) <= Number(getValues().price) ||
-              "Discount should be less than price",
-          })}
-        />
       </FormRow>
 
       <FormRow label="Status" error={errors?.status?.message}>

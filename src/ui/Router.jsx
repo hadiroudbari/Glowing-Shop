@@ -21,6 +21,8 @@ import AdminOrderDetails from "../pages/AdminOrderDetails";
 import AdminUsers from "../pages/AdminUsers";
 import AdminSettings from "../pages/AdminSettings";
 import AdminLogin from "../pages/AdminLogin";
+import AdminProductsMaktab from "../pages/AdminProductsMaktab";
+import AdminProductsMaktabStock from "../pages/AdminProductsMaktabStock";
 
 function Router() {
   return (
@@ -54,6 +56,11 @@ function Router() {
           <Route path="categories" element={<AdminCategories />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
+          <Route path="productsMaktab" element={<AdminProductsMaktab />} />
+          <Route
+            path="productsMaktabStock"
+            element={<AdminProductsMaktabStock />}
+          />
         </Route>
         <Route path="login" element={<AdminLogin />} />
         <Route path="*" element={<PageNotFound />} />

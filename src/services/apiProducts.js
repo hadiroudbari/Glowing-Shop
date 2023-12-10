@@ -75,8 +75,6 @@ export async function createUpdateProduct(newProduct, id) {
   if (id)
     query = query.update([{ ...newProduct, image: imagePath }]).eq("id", id);
 
-  console.log(newProduct);
-
   const { data, error } = await query.select().single();
 
   if (error) {
@@ -110,6 +108,20 @@ export async function deleteProduct(id) {
   if (error) {
     console.error(error);
     throw new Error("Products could not be deleted");
+  }
+
+  return data;
+}
+
+export async function updateProductMaktab(updateProducts) {
+  const { data, error } = await supabase
+    .from("products")
+    .upsert(updateProducts)
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Products could not be updated");
   }
 
   return data;
