@@ -1,19 +1,13 @@
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
 
-function Textarea({ value, onChange }) {
+function Textarea({ initialValue, onChange }) {
   const editorRef = useRef(null);
-
-  onChange(editorRef?.current?.targetElm?.value);
 
   return (
     <Editor
-      onInit={(evt, editor) => {
-        editorRef.current = editor;
-      }}
-      id="description"
+      onInit={(evt, editor) => (editorRef.current = editor)}
       apiKey="1lzjz4gz78piabxlh6q5ym2s14cy9rzqlq0b3gnta9ra4am1"
-      initialValue="<p></p>"
       init={{
         height: 200,
         menubar: false,
@@ -49,6 +43,9 @@ function Textarea({ value, onChange }) {
         statusbar: false,
         resize: false,
       }}
+      id="description"
+      initialValue={initialValue}
+      onChange={() => onChange(editorRef.current.getContent())}
     />
   );
 }

@@ -10,8 +10,14 @@ export function useCreateProduct() {
     mutationFn: createUpdateProduct,
     onSuccess: () => {
       toast.success("New Product successfully created");
+
       queryClient.invalidateQueries({
         queryKey: ["products"],
+      });
+      queryClient.refetchQueries({
+        queryKey: ["products"],
+        type: "active",
+        exact: true,
       });
     },
     onError: (err) => toast.error(err.message),

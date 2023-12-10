@@ -11,7 +11,7 @@ export async function getProducts({
   let query = supabase
     .from("products")
     .select(
-      "id, name, pictures, image, categories(name), topCategories(name), price, stock, discount, description, status",
+      "id, name, pictures, image, categories(id,name), topCategories(id,name), price, stock, discount, description, status",
       { count: "exact" }
     );
 
@@ -75,11 +75,14 @@ export async function createUpdateProduct(newProduct, id) {
   if (id)
     query = query.update([{ ...newProduct, image: imagePath }]).eq("id", id);
 
+  console.log(newProduct);
+
   const { data, error } = await query.select().single();
 
   if (error) {
     console.error(error);
-    throw new Error("Products could not be created");
+    if (id) throw new Error("Product could not be updated");
+    else throw new Error("Product could not be created");
   }
 
   // 2. Upload Image

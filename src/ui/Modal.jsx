@@ -14,6 +14,7 @@ const StyledModal = styled.div`
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
   transition: all 0.5s;
+  z-index: 1200;
 `;
 
 const Overlay = styled.div`
@@ -53,7 +54,7 @@ const Button = styled.button`
   }
 `;
 
-const ModalContext = createContext();
+export const ModalContext = createContext();
 
 function Modal({ children }) {
   const [openName, setOpenName] = useState("");
@@ -82,15 +83,16 @@ function Window({ children, name }) {
   if (name !== openName) return null;
 
   return createPortal(
-    <Overlay>
-      <StyledModal ref={ref}>
+    <>
+      <Overlay ref={ref}></Overlay>
+      <StyledModal>
         <Button onClick={close}>
           <HiXMark />
         </Button>
 
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
-    </Overlay>,
+    </>,
     document.body
   );
 }

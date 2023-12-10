@@ -11,6 +11,7 @@ import Textarea from "../../ui/Textarea";
 import SpinnerMini from "../../ui/SpinnerMini";
 import { useFilterCategories } from "../categories/useCategories";
 import { useCreateProduct } from "./useCreateProduct";
+import { useUpdateProduct } from "./useUpdateProduct";
 
 const Select = styled.select`
   font-size: 1.4rem;
@@ -35,37 +36,86 @@ const StyledFormRow = styled.div`
   border-bottom: 1px solid var(--color-grey-100);
 `;
 
-function ProductForm({ onCloseModal }) {
-  const [description, setDescription] = useState("");
-  const [categoryId, setCategoryId] = useState(0);
-
-  const { filterCategories, isLoading } = useFilterCategories(categoryId);
+function ProductForm({ productToEdit = {}, onCloseModal }) {
   const { createProduct, isCreating } = useCreateProduct();
+  const { updateProduct, isUpdating } = useUpdateProduct();
 
-  const isWorking = isCreating;
+  const isWorking = isCreating || isUpdating;
+
+  let defaultcategoryId, defaultTopCategoryId;
+  const {
+    id: productId,
+    description: productDescription,
+    name,
+    pictures,
+    price,
+    stock,
+    discount,
+    status,
+    image,
+  } = productToEdit;
+
+  const isUpdateSession = Boolean(productId);
+
+  if (isUpdateSession) {
+    ({
+      categories: { id: defaultcategoryId },
+      topCategories: { id: defaultTopCategoryId },
+    } = productToEdit);
+  }
+
+  const defaultValues = {
+    categoryId: defaultcategoryId,
+    topCategoryId: defaultTopCategoryId,
+    name,
+    pictures,
+    price,
+    stock,
+    discount,
+    status,
+    image,
+    description: productDescription,
+  };
 
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     getValues,
     clearErrors,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: isUpdateSession ? defaultValues : {},
+  });
+
+  const [description, setDescription] = useState(productDescription || "");
+  const [categoryId, setCategoryId] = useState(defaultTopCategoryId || 0);
+  const { filterCategories, isLoading } = useFilterCategories(categoryId);
 
   function onSubmit(data) {
-    const image =
-      typeof data.pictures === "string" ? data.pictures : data.pictures[0];
+    const image = typeof data.image === "string" ? data.image : data.image[0];
 
-    const newData = { ...data, image, description };
-
-    createProduct(newData, {
-      onSuccess: (data) => {
-        console.log("done");
-        // reset();
-        // onCloseModal?.();
-      },
-    });
+    if (isUpdateSession) {
+      updateProduct(
+        { newProductData: { ...data, image, description }, id: productId },
+        {
+          onSuccess: (data) => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
+    } else {
+      createProduct(
+        { ...data, image, description },
+        {
+          onSuccess: (data) => {
+            reset();
+            onCloseModal?.();
+          },
+        }
+      );
+    }
   }
 
   function onError(error) {
@@ -206,26 +256,37 @@ function ProductForm({ onCloseModal }) {
 
       <StyledFormRow>
         <label htmlFor="description">Description for website</label>
-        <Textarea value={description} onChange={setDescription} />
+        <Textarea initialValue={description} onChange={setDescription} />
       </StyledFormRow>
 
-      <FormRow label="Product Photo" error={errors?.pictures?.message}>
+      <FormRow label="Product Photo" error={errors?.image?.message}>
         <FileInput
-          id="pictures"
+          id="image"
           accept="image/*"
           disabled={isWorking}
-          {...register("pictures", {
-            required: "This field is required",
+          {...register("image", {
+            required: isUpdateSession ? false : "This field is required",
           })}
         />
       </FormRow>
 
       <FormRow>
-        <Button bg="white" type="reset" onClick={() => onCloseModal?.()}>
+        <Button
+          bg="white"
+          type="reset"
+          onClick={() => onCloseModal?.()}
+          disabled={isWorking}
+        >
           Cancel
         </Button>
-        <Button bg="green">
-          {isWorking ? <SpinnerMini /> : "Create new Product"}
+        <Button bg="green" disabled={isWorking}>
+          {isWorking ? (
+            <SpinnerMini />
+          ) : isUpdateSession ? (
+            "Update Product"
+          ) : (
+            "Create new Product"
+          )}
         </Button>
       </FormRow>
     </Form>

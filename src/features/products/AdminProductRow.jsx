@@ -75,7 +75,6 @@ function AdminProductRow({ product }) {
   const {
     id,
     name,
-    pictures: { images },
     image,
     categories,
     topCategories,
@@ -92,7 +91,7 @@ function AdminProductRow({ product }) {
         {id >= 10 && "0" + id}
         {id >= 100 && id}
       </StyledId>
-      <Img src={images?.[0] || image} />
+      <Img src={image} />
       <Product>{name}</Product>
       <div>
         {topCategories.name} / <br /> <Category>{categories.name}</Category>
@@ -108,9 +107,9 @@ function AdminProductRow({ product }) {
       <div>
         <Modal>
           <Menus.Menu>
-            <Menus.Toggle id={1} />
+            <Menus.Toggle id={id} />
 
-            <Menus.List id={1}>
+            <Menus.List id={id}>
               <Modal.Open opens="edit">
                 <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
               </Modal.Open>
@@ -123,7 +122,7 @@ function AdminProductRow({ product }) {
             </Menus.List>
 
             <Modal.Window name="edit">
-              <ProductForm cabinToEdit="" />
+              <ProductForm productToEdit={product} />
             </Modal.Window>
 
             <Modal.Window name="delete">
