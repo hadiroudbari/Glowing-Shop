@@ -48,8 +48,8 @@ function AdminProductRowMaktabStock({
 
   const { id, name, price, stock } = product;
 
-  const [updatePrice, setUpdatePrice] = useState(price);
-  const [updateStock, setUpdateStock] = useState(stock);
+  const [updatePrice, setUpdatePrice] = useState(price || 0);
+  const [updateStock, setUpdateStock] = useState(stock || 0);
 
   useEffect(
     function () {
@@ -88,7 +88,7 @@ function AdminProductRowMaktabStock({
         />
       ) : (
         <Price onClick={() => setEditPrice(true)}>
-          {formatCurrency(price)}
+          {formatCurrency(updatePrice)}
         </Price>
       )}
 
@@ -109,7 +109,7 @@ function AdminProductRowMaktabStock({
           }}
         />
       ) : (
-        <Stock onClick={() => setEditStatus(true)}>{stock}</Stock>
+        <Stock onClick={() => setEditStatus(true)}>{updateStock}</Stock>
       )}
     </Table.Row>
   );
