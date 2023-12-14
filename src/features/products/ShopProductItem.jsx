@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { NavLink } from "react-router-dom";
 import { CiShoppingCart, CiStar } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 
@@ -32,7 +33,7 @@ const StarBox = styled.div`
   align-items: center;
 `;
 
-const ImgBox = styled.a`
+const ImgBox = styled(NavLink)`
   position: relative;
   display: inline-block;
   overflow: hidden;
@@ -63,7 +64,7 @@ const Img = styled.img`
   }
 `;
 
-const ImgIconBox = styled.div`
+const IconBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +77,7 @@ const ImgIconBox = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const ImgIcon = styled.span`
+const Icon = styled.span`
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -88,29 +89,34 @@ const ImgIcon = styled.span`
   justify-content: center;
   align-items: center;
 
+  & svg {
+    width: 3rem;
+    height: 3rem;
+  }
+
   &:hover {
     background-color: var(--color-grey-900);
     color: var(--color-grey-0);
   }
 `;
 
-function ShopProductItem({ src }) {
+function ProductItem({ src }) {
   return (
     <Box>
       <ImgBox href="#">
         <Img src={src} alt="Products" />
         <ImgSale>-26%</ImgSale>
-        <ImgIconBox>
-          <ImgIcon>
-            <CiShoppingCart size={30} />
-          </ImgIcon>
-          <ImgIcon>
-            <CiStar size={30} />
-          </ImgIcon>
-          <ImgIcon>
-            <IoEyeOutline size={30} />
-          </ImgIcon>
-        </ImgIconBox>
+        <IconBox>
+          <Icon>
+            <CiShoppingCart />
+          </Icon>
+          <Icon>
+            <CiStar />
+          </Icon>
+          <Icon>
+            <IoEyeOutline />
+          </Icon>
+        </IconBox>
       </ImgBox>
 
       <Price>$29.00</Price>
@@ -126,4 +132,4 @@ function ShopProductItem({ src }) {
   );
 }
 
-export default ShopProductItem;
+export default ProductItem;

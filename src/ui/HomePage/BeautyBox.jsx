@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import HeadingBox from "../HeadingBox";
 import BeautyItem from "./BeautyItem";
-import ProductBox from "../ProductBox";
+import ProductBox from "../../features/products/ShopProductBox";
 
 const Box = styled.div`
   display: flex;
