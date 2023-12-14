@@ -94,8 +94,6 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
     defaultValues: isUpdateSession ? defaultValues : {},
   });
 
-  console.log(defaultValues);
-
   const [thumbnail, setThumbnail] = useState(image || "");
   const [description, setDescription] = useState(productDescription || "");
   const [categoryId, setCategoryId] = useState(defaultTopCategoryId || 0);
