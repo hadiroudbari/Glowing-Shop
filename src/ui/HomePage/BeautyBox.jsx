@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-import HeadingBox from "./HeadingBox";
+import HeadingBox from "../HeadingBox";
 import BeautyItem from "./BeautyItem";
-import ShopProductItem from "../features/products/ShopProductItem";
+import ProductBox from "../ProductBox";
 
-const StyledBeautyBox = styled.div`
+const Box = styled.div`
   display: flex;
   flex-direction: ${(props) =>
     props.type === "reverse" ? "row-reverse" : "row"};
@@ -12,16 +12,6 @@ const StyledBeautyBox = styled.div`
 
   padding: 0 5rem;
   margin-bottom: 15rem;
-`;
-
-const StyledProductsBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-
-  column-gap: 3rem;
-  row-gap: 2rem;
-  flex-shrink: 10;
 `;
 
 function BeautyBox({ type, src, title, text }) {
@@ -44,17 +34,10 @@ function BeautyBox({ type, src, title, text }) {
           </p>
         </HeadingBox>
       )}
-      <StyledBeautyBox type={type}>
+      <Box type={type}>
         <BeautyItem src={src} title={title} text={text} type={type} />
-        <StyledProductsBox>
-          <ShopProductItem src="./images/Products/product-01.jpg" />
-          <ShopProductItem src="./images/Products/product-02.jpg" />
-          <ShopProductItem src="./images/Products/product-03.jpg" />
-          <ShopProductItem src="./images/Products/product-04.jpg" />
-          <ShopProductItem src="./images/Products/product-05.jpg" />
-          <ShopProductItem src="./images/Products/product-06.jpg" />
-        </StyledProductsBox>
-      </StyledBeautyBox>
+        <ProductBox />
+      </Box>
     </>
   );
 }

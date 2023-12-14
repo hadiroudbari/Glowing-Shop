@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import HeadingBox from "./HeadingBox";
+import HeadingBox from "../HeadingBox";
 import DiscoverItem from "./DiscoverItem";
 
-const StyledDiscoverBox = styled.div`
+const Box = styled.div`
   display: flex;
   gap: 2rem;
 
@@ -19,7 +19,7 @@ function DiscoverBox() {
           essentials while saving you money.
         </p>
       </HeadingBox>
-      <StyledDiscoverBox>
+      <Box>
         <DiscoverItem
           src="./images/Hero/hero-slider-26.jpg"
           title="Discover Our Autumn Skincare"
@@ -33,7 +33,7 @@ function DiscoverBox() {
           text="Makeup with extended range in colors for every human."
           btn="Shop Sale"
         />
-      </StyledDiscoverBox>
+      </Box>
     </>
   );
 }

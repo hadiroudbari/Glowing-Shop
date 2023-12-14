@@ -1,23 +1,23 @@
 import styled from "styled-components";
 
-const StyledFooterList = styled.div`
+const List = styled.div`
   display: flex;
   flex-direction: column;
 
   gap: 2.4rem;
 `;
 
-const StyledFooterListTitle = styled.h4`
+const ListTitle = styled.h4`
   font-size: 2.4rem;
 `;
 
-const StyledFooterListItem = styled.ul`
+const ListItem = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
 
-const StyledFooterListLink = styled.a`
+const ListLink = styled.a`
   font-size: 1.4rem;
   font-weight: 600;
 
@@ -31,16 +31,16 @@ const StyledFooterListLink = styled.a`
 
 function FooterList({ title, array }) {
   return (
-    <StyledFooterList>
-      <StyledFooterListTitle>{title}</StyledFooterListTitle>
-      <StyledFooterListItem>
+    <List>
+      <ListTitle>{title}</ListTitle>
+      <ListItem>
         {array.map((item, i) => (
           <li key={i}>
-            <StyledFooterListLink href="">{item}</StyledFooterListLink>
+            <ListLink href="">{item}</ListLink>
           </li>
         ))}
-      </StyledFooterListItem>
-    </StyledFooterList>
+      </ListItem>
+    </List>
   );
 }
 

@@ -12,7 +12,7 @@ import ProductDetails from "../pages/ShopProductDetails";
 import Profile from "../pages/CustomerProfile";
 import PageNotFound from "../pages/PageNotFound";
 import ProtectedRoute from "../ui/ProtectedRoute";
-import AdminLayout from "../ui/AdminLayout";
+import AdminLayout from "../ui/AdminPage/AdminLayout";
 import AdminDashboard from "../pages/AdminDashboard";
 import AdminProducts from "../pages/AdminProducts";
 import AdminCategories from "../pages/AdminCategories";

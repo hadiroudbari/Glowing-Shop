@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import HeadingBox from "./HeadingBox";
-import Button from "./Button";
+import HeadingBox from "../HeadingBox";
+import Button from "../Button";
 
 const CategoryGrid = styled.div`
   display: grid;

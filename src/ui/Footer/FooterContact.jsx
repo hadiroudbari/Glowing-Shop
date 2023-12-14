@@ -1,17 +1,17 @@
 import styled from "styled-components";
-import Button from "./Button";
+import Button from "../Button";
 
-const StyledContactBox = styled.div`
+const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
 `;
 
-const StyledContactHeader = styled.h2`
+const Header = styled.h2`
   font-size: 3rem;
 `;
 
-const StyledContactText = styled.p`
+const Text = styled.p`
   font-size: 1.4rem;
   font-weight: 600;
 
@@ -19,12 +19,12 @@ const StyledContactText = styled.p`
   color: var(--color-grey-500);
 `;
 
-const StyledContactInputBox = styled.div`
+const InputBox = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const StyledContactInput = styled.input`
+const Input = styled.input`
   height: 46px;
   width: 350px;
 
@@ -39,20 +39,17 @@ const StyledContactInput = styled.input`
 
 function FooterContact() {
   return (
-    <StyledContactBox>
-      <StyledContactHeader>Good Emails</StyledContactHeader>
-      <StyledContactText>
+    <Box>
+      <Header>Good Emails</Header>
+      <Text>
         Enter your email below to be the first to know about new collections and
         product launches.
-      </StyledContactText>
-      <StyledContactInputBox>
-        <StyledContactInput
-          type="text"
-          placeholder="Enter your email address"
-        />
+      </Text>
+      <InputBox>
+        <Input type="text" placeholder="Enter your email address" />
         <Button bg="dark">Subscribe</Button>
-      </StyledContactInputBox>
-    </StyledContactBox>
+      </InputBox>
+    </Box>
   );
 }
 

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-import Button from "./Button";
+import Button from "../Button";
 
-const StyledBeautyItemBox = styled.div`
+const Box = styled.div`
   position: relative;
   overflow: hidden;
 
@@ -13,12 +13,12 @@ const StyledBeautyItemBox = styled.div`
   }
 `;
 
-const StyledBeautyItemImg = styled.img`
+const Img = styled.img`
   height: ${(props) => (props.type === "reverse" ? "915px" : "935px")};
   transition: all 0.3s;
 `;
 
-const StyledBeautyItemTextBox = styled.div`
+const TextBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -28,26 +28,26 @@ const StyledBeautyItemTextBox = styled.div`
   left: 10%;
 `;
 
-const StyledBeautyItemSpan = styled.span`
+const Span = styled.span`
   font-family: "Allura";
   font-size: 5rem;
 `;
 
-const StyledBeautyItemText = styled.p`
+const Text = styled.p`
   font-size: 4rem;
   font-weight: 600;
 `;
 
 function BeautyItem({ src, title, text, type }) {
   return (
-    <StyledBeautyItemBox>
-      <StyledBeautyItemImg src={src} alt={title} type={type} />
-      <StyledBeautyItemTextBox>
-        <StyledBeautyItemSpan>{title}</StyledBeautyItemSpan>
-        <StyledBeautyItemText>{text}</StyledBeautyItemText>
+    <Box>
+      <Img src={src} alt={title} type={type} />
+      <TextBox>
+        <Span>{title}</Span>
+        <Text>{text}</Text>
         <Button bg="light">Explore More</Button>
-      </StyledBeautyItemTextBox>
-    </StyledBeautyItemBox>
+      </TextBox>
+    </Box>
   );
 }
 

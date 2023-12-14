@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 
-const StyledContainer = styled.div`
+const Container = styled.div`
   ${(props) =>
     props.bgnum === 0 &&
     css`
@@ -46,24 +46,24 @@ const SpecBox = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const StyledSpecTitle = styled.p`
+const Title = styled.p`
   font-family: Allura;
   font-size: 6rem;
   color: var(--color-brand-950);
 `;
 
-const StyledSpecStrong = styled.span`
+const Strong = styled.span`
   font-size: 10rem;
 `;
 
-const StyledSpecHeading = styled.h1`
+const Heading = styled.h1`
   font-size: 5rem;
   font-weight: 800;
   line-height: 1.4;
   margin-bottom: 2rem;
 `;
 
-const StyledSpecText = styled.p`
+const Text = styled.p`
   color: var(--color-grey-500);
   font-weight: 600;
 `;
@@ -83,18 +83,18 @@ function Landing() {
 
   return (
     <>
-      <StyledContainer bgnum={0} opc={bgNumber === 0 ? 100 : 0} />
-      <StyledContainer bgnum={1} opc={bgNumber === 1 ? 100 : 0} />
-      <StyledContainer bgnum={2} opc={bgNumber === 2 ? 100 : 0} />
+      <Container bgnum={0} opc={bgNumber === 0 ? 100 : 0} />
+      <Container bgnum={1} opc={bgNumber === 1 ? 100 : 0} />
+      <Container bgnum={2} opc={bgNumber === 2 ? 100 : 0} />
       <SpecBox>
-        <StyledSpecTitle>
-          <StyledSpecStrong>M</StyledSpecStrong>ake for you!
-        </StyledSpecTitle>
-        <StyledSpecHeading>Beauty Inspired by Real Life</StyledSpecHeading>
-        <StyledSpecText>
+        <Title>
+          <Strong>M</Strong>ake for you!
+        </Title>
+        <Heading>Beauty Inspired by Real Life</Heading>
+        <Text>
           Made using clean, non-toxic ingredients, our products are designed for
           everyone.
-        </StyledSpecText>
+        </Text>
         <Button bg="dark">Shop Now</Button>
       </SpecBox>
     </>

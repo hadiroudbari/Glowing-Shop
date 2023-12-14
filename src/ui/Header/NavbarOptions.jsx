@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 import { CiSearch, CiShoppingCart, CiStar, CiUser } from "react-icons/ci";
 
-const OptionList = styled.ul`
+const List = styled.ul`
   display: flex;
   gap: 1.6rem;
 `;
 
-const OptionLink = styled.a`
+const Link = styled.a`
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -26,33 +26,38 @@ const OptionLink = styled.a`
     height: 15px;
     font-size: 1rem;
   }
+
+  & svg {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 function NavbarOptions() {
   return (
-    <OptionList>
+    <List>
       <li>
-        <OptionLink>
-          <CiSearch size={30} />
-        </OptionLink>
+        <Link>
+          <CiSearch />
+        </Link>
       </li>
       <li>
-        <OptionLink>
-          <CiUser size={30} />
-        </OptionLink>
+        <Link>
+          <CiUser />
+        </Link>
       </li>
       <li>
-        <OptionLink>
-          <CiStar size={30} />
-        </OptionLink>
+        <Link>
+          <CiStar />
+        </Link>
       </li>
       <li>
-        <OptionLink>
-          <CiShoppingCart size={30} />
+        <Link>
+          <CiShoppingCart />
           <span>3</span>
-        </OptionLink>
+        </Link>
       </li>
-    </OptionList>
+    </List>
   );
 }
 

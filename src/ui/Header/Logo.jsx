@@ -8,12 +8,12 @@ const LogoBox = styled(NavLink)`
   gap: 1rem;
 `;
 
-const StyledImg = styled.img`
+const Img = styled.img`
   width: auto;
   height: 50px;
 `;
 
-const StyledText = styled.h1`
+const Text = styled.h1`
   font-weight: 800;
   font-size: 4rem;
 `;
@@ -21,8 +21,8 @@ const StyledText = styled.h1`
 function Logo() {
   return (
     <LogoBox to="/home">
-      <StyledImg src="/logo.png" alt="LOGO" />
-      <StyledText>GLOWING</StyledText>
+      <Img src="/logo.png" alt="LOGO" />
+      <Text>GLOWING</Text>
     </LogoBox>
   );
 }

@@ -25,12 +25,17 @@ const StyledBtn = styled.button`
     border: none;
     outline: none;
   }
+
+  & svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 `;
 
 function ScrollToTop() {
   return (
     <StyledBtn onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-      <HiOutlineArrowSmUp size={25} />
+      <HiOutlineArrowSmUp />
     </StyledBtn>
   );
 }

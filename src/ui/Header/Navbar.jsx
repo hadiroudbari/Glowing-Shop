@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import Logo from "../ui/Logo";
+import Logo from "./Logo";
 import NavbarOptions from "./NavbarOptions";
 import { createPortal } from "react-dom";
 import ScrollToTop from "./ScrollToTop";

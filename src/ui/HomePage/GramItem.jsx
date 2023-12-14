@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledGramItem = styled.li`
+const Item = styled.li`
   width: 275px;
   height: 275px;
   margin-bottom: 5rem;
@@ -10,9 +10,9 @@ const StyledGramItem = styled.li`
 
 function GramItem({ src }) {
   return (
-    <StyledGramItem>
+    <Item>
       <img src={src} alt="Instagram" />
-    </StyledGramItem>
+    </Item>
   );
 }
 

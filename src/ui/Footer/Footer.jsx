@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Logo from "./Logo";
+import Logo from "../Header/Logo";
 import FooterSocial from "./FooterSocial";
 import FooterList from "./FooterList";
 import FooterContact from "./FooterContact";
 
-const StyledFooterBox = styled.div`
+const Box = styled.div`
   display: flex;
   gap: 12rem;
 
@@ -26,13 +26,13 @@ const StyledFooterBox = styled.div`
   }
 `;
 
-const StyledFooterBoxLogo = styled.div`
+const FooterLogo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
 `;
 
-const StyledFooterBoxLogoText = styled.p`
+const FooterLogoText = styled.p`
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--color-grey-500);
@@ -42,15 +42,15 @@ const StyledFooterBoxLogoText = styled.p`
 
 function Footer() {
   return (
-    <StyledFooterBox>
-      <StyledFooterBoxLogo>
+    <Box>
+      <FooterLogo>
         <Logo />
-        <StyledFooterBoxLogoText>
+        <FooterLogoText>
           "Millions of combinations, meaning you get a totally unique piece of
           furniture exactly the way you want it."
-        </StyledFooterBoxLogoText>
+        </FooterLogoText>
         <FooterSocial />
-      </StyledFooterBoxLogo>
+      </FooterLogo>
       <FooterList
         title="Useful links"
         array={[
@@ -71,7 +71,7 @@ function Footer() {
         ]}
       />
       <FooterContact />
-    </StyledFooterBox>
+    </Box>
   );
 }
 

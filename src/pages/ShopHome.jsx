@@ -1,11 +1,11 @@
-import BeautyBox from "../ui/BeautyBox";
-import CategoryBox from "../ui/CategoryBox";
-import DiscoverBox from "../ui/DiscoverBox";
-import GramBox from "../ui/GramBox";
-import Header from "../ui/Header";
-import InfoFeatures from "../ui/InfoFeatures";
-import Supports from "../ui/Supports";
-import Landing from "../ui/Landing";
+import BeautyBox from "../ui/HomePage/BeautyBox";
+import CategoryBox from "../ui/HomePage/CategoryBox";
+import DiscoverBox from "../ui/HomePage/DiscoverBox";
+import GramBox from "../ui/HomePage/GramBox";
+import Header from "../ui/Header/Header";
+import InfoFeatures from "../ui/HomePage/InfoFeatures";
+import Supports from "../ui/HomePage/Supports";
+import Landing from "../ui/HomePage/Landing";
 
 function Home() {
   return (

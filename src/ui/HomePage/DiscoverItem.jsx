@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import Button from "./Button";
+import Button from "../Button";
 
-const StyledDiscoverItemBox = styled.div`
+const Box = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: ${(props) => (props.type === "small" ? "0" : "1")};
@@ -12,7 +12,7 @@ const StyledDiscoverItemBox = styled.div`
   margin-bottom: 15rem;
 `;
 
-const StyledDiscoverItemTextBox = styled.div`
+const TextBox = styled.div`
   position: absolute;
   top: 50px;
   left: 50px;
@@ -21,7 +21,7 @@ const StyledDiscoverItemTextBox = styled.div`
     props.type === "small" ? "var(--color-grey-900)" : "var(--color-grey-0)"};
 `;
 
-const StyledDiscoverItemText = styled.p`
+const Text = styled.p`
   font-weight: 600;
 
   ${(props) =>
@@ -34,7 +34,7 @@ const StyledDiscoverItemText = styled.p`
     `};
 `;
 
-const StyledDiscoverItemHeader = styled.h2`
+const Header = styled.h2`
   width: 300px;
   margin-top: 1.6rem;
   font-size: 3.5rem;
@@ -49,23 +49,23 @@ const StyledDiscoverItemHeader = styled.h2`
 
 function DiscoverItem({ type, src, title, text, btn }) {
   return (
-    <StyledDiscoverItemBox type={type}>
+    <Box type={type}>
       <img src={src} alt={title} />
-      <StyledDiscoverItemTextBox type={type}>
+      <TextBox type={type}>
         {type === "small" ? (
           <>
-            <StyledDiscoverItemHeader as="h4">{title}</StyledDiscoverItemHeader>
-            <StyledDiscoverItemText as="p">{text}</StyledDiscoverItemText>
+            <Header as="h4">{title}</Header>
+            <Text as="p">{text}</Text>
           </>
         ) : (
           <>
-            <StyledDiscoverItemText>{text}</StyledDiscoverItemText>
-            <StyledDiscoverItemHeader>{title}</StyledDiscoverItemHeader>
+            <Text>{text}</Text>
+            <Header>{title}</Header>
           </>
         )}
         <Button bg="light">{btn}</Button>
-      </StyledDiscoverItemTextBox>
-    </StyledDiscoverItemBox>
+      </TextBox>
+    </Box>
   );
 }
 

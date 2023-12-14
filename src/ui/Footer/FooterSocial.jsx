@@ -8,12 +8,12 @@ import {
   PiYoutubeLogo,
 } from "react-icons/pi";
 
-const StyledSocialBox = styled.ul`
+const Box = styled.ul`
   display: flex;
   gap: 1.6rem;
 `;
 
-const StyledSocialItem = styled.a`
+const Item = styled.a`
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -27,6 +27,11 @@ const StyledSocialItem = styled.a`
   color: var(--color-grey-0);
   border: 2px solid var(--color-grey-0);
 
+  & svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
   &:hover {
     background-color: var(--color-grey-0);
     color: var(--color-brand-950);
@@ -36,33 +41,33 @@ const StyledSocialItem = styled.a`
 
 function FooterSocial() {
   return (
-    <StyledSocialBox>
+    <Box>
       <li>
-        <StyledSocialItem>
-          <PiInstagramLogo size={25} />
-        </StyledSocialItem>
+        <Item>
+          <PiInstagramLogo />
+        </Item>
       </li>
       <li>
-        <StyledSocialItem>
-          <PiWhatsappLogo size={25} />
-        </StyledSocialItem>
+        <Item>
+          <PiWhatsappLogo />
+        </Item>
       </li>
       <li>
-        <StyledSocialItem>
-          <PiTelegramLogo size={25} />
-        </StyledSocialItem>
+        <Item>
+          <PiTelegramLogo />
+        </Item>
       </li>
       <li>
-        <StyledSocialItem>
-          <PiTwitterLogo size={25} />
-        </StyledSocialItem>
+        <Item>
+          <PiTwitterLogo />
+        </Item>
       </li>
       <li>
-        <StyledSocialItem>
-          <PiYoutubeLogo size={25} />
-        </StyledSocialItem>
+        <Item>
+          <PiYoutubeLogo />
+        </Item>
       </li>
-    </StyledSocialBox>
+    </Box>
   );
 }
 

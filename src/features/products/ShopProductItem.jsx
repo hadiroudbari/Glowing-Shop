@@ -5,34 +5,34 @@ import { IoEyeOutline } from "react-icons/io5";
 
 import StarRating from "../../ui/StarRating";
 
-const StyledProductItemBox = styled.div`
+const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 `;
 
-const StyledProductItemPrice = styled.span`
+const Price = styled.span`
   margin-top: 1rem;
   font-weight: 800;
 `;
 
-const StyledProductItemTitle = styled.p`
+const Title = styled.p`
   font-weight: 600;
 `;
 
-const StyledProductItemRating = styled.div`
+const Rating = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
 `;
 
-const StyledProductItemStarBox = styled.div`
+const StarBox = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const StyledProductItemImgBox = styled.a`
+const ImgBox = styled.a`
   position: relative;
   display: inline-block;
   overflow: hidden;
@@ -42,7 +42,7 @@ const StyledProductItemImgBox = styled.a`
   }
 `;
 
-const StyledProductItemImgSale = styled.div`
+const ImgSale = styled.div`
   position: absolute;
   top: 15px;
   left: 15px;
@@ -54,7 +54,7 @@ const StyledProductItemImgSale = styled.div`
   font-weight: 700;
 `;
 
-const StyledProductItemImg = styled.img`
+const Img = styled.img`
   transition: all 0.3s;
   height: 100%;
 
@@ -63,7 +63,7 @@ const StyledProductItemImg = styled.img`
   }
 `;
 
-const StyledProductItemImgIconBox = styled.div`
+const ImgIconBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@ const StyledProductItemImgIconBox = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const StyledProductItemImgIcon = styled.span`
+const ImgIcon = styled.span`
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -96,33 +96,33 @@ const StyledProductItemImgIcon = styled.span`
 
 function ShopProductItem({ src }) {
   return (
-    <StyledProductItemBox>
-      <StyledProductItemImgBox href="#">
-        <StyledProductItemImg src={src} alt="Products" />
-        <StyledProductItemImgSale>-26%</StyledProductItemImgSale>
-        <StyledProductItemImgIconBox>
-          <StyledProductItemImgIcon>
+    <Box>
+      <ImgBox href="#">
+        <Img src={src} alt="Products" />
+        <ImgSale>-26%</ImgSale>
+        <ImgIconBox>
+          <ImgIcon>
             <CiShoppingCart size={30} />
-          </StyledProductItemImgIcon>
-          <StyledProductItemImgIcon>
+          </ImgIcon>
+          <ImgIcon>
             <CiStar size={30} />
-          </StyledProductItemImgIcon>
-          <StyledProductItemImgIcon>
+          </ImgIcon>
+          <ImgIcon>
             <IoEyeOutline size={30} />
-          </StyledProductItemImgIcon>
-        </StyledProductItemImgIconBox>
-      </StyledProductItemImgBox>
+          </ImgIcon>
+        </ImgIconBox>
+      </ImgBox>
 
-      <StyledProductItemPrice>$29.00</StyledProductItemPrice>
-      <StyledProductItemTitle>Enriched Duo</StyledProductItemTitle>
+      <Price>$29.00</Price>
+      <Title>Enriched Duo</Title>
 
-      <StyledProductItemRating>
-        <StyledProductItemStarBox>
+      <Rating>
+        <StarBox>
           <StarRating />
-        </StyledProductItemStarBox>
+        </StarBox>
         2947 reviews
-      </StyledProductItemRating>
-    </StyledProductItemBox>
+      </Rating>
+    </Box>
   );
 }
 

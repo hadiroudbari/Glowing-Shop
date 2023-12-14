@@ -1,4 +1,4 @@
-import Header from "../ui/Header";
+import Header from "../ui/Header/Header";
 import Sidebar from "../ui/Sidebar";
 
 function Shop() {

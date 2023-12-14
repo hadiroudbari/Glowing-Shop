@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Logo from "./Logo";
+import Logo from "../Header/Logo";
 import AdminNav from "./AdminNav";
 
 const StyledSidebar = styled.aside`
