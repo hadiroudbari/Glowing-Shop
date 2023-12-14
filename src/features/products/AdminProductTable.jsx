@@ -26,7 +26,7 @@ function AdminProductTable() {
 
   return (
     <Menus>
-      <Table columns="0.3fr 0.6fr 3fr 2fr 1fr 1fr 1fr 1fr 1fr">
+      <Table columns="0.5fr 1fr 3fr 2fr 1fr 1fr 1fr 1fr 1fr">
         <Table.Header>
           <div></div>
           <div></div>

@@ -12,6 +12,7 @@ import { useDeleteProduct } from "./useDeleteProduct";
 const Img = styled.img`
   display: block;
   width: 6.4rem;
+  height: 6.4rem;
   padding: 1rem;
   object-fit: cover;
   object-position: center;

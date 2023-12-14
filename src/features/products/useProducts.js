@@ -3,7 +3,7 @@ import { getProducts } from "../../services/apiProducts";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../../utils/constants";
 
-export function useProducts() {
+export function useProducts(shopPageSize, shopCategory) {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
@@ -25,7 +25,7 @@ export function useProducts() {
     : { field: "topCategoryId", value: topCategoryId, method: "eq" };
 
   // CATEGORY
-  const categoryId = searchParams.get("sortByCategory") || "";
+  const categoryId = searchParams.get("sortByCategory") || shopCategory;
   const category = !categoryId
     ? null
     : { field: "categoryId", value: categoryId, method: "eq" };
@@ -39,8 +39,25 @@ export function useProducts() {
     data: { products, count } = {},
     error,
   } = useQuery({
-    queryKey: ["products", sortBy, filter, topCategory, category, page],
-    queryFn: () => getProducts({ sortBy, filter, topCategory, category, page }),
+    queryKey: [
+      "products",
+      sortBy,
+      filter,
+      topCategory,
+      category,
+      page,
+      shopPageSize,
+      shopCategory,
+    ],
+    queryFn: () =>
+      getProducts({
+        sortBy,
+        filter,
+        topCategory,
+        category,
+        page,
+        shopPageSize,
+      }),
   });
 
   // PRE-FETCHING
@@ -48,16 +65,48 @@ export function useProducts() {
 
   if (page < pageCount)
     queryClient.prefetchQuery({
-      queryKey: ["products", filter, sortBy, topCategory, category, page + 1],
+      queryKey: [
+        "products",
+        filter,
+        sortBy,
+        topCategory,
+        category,
+        page + 1,
+        shopPageSize,
+        shopCategory,
+      ],
       queryFn: () =>
-        getProducts({ filter, sortBy, topCategory, category, page: page + 1 }),
+        getProducts({
+          filter,
+          sortBy,
+          topCategory,
+          category,
+          page: page + 1,
+          shopPageSize,
+        }),
     });
 
   if (page > 1)
     queryClient.prefetchQuery({
-      queryKey: ["products", filter, sortBy, topCategory, category, page - 1],
+      queryKey: [
+        "products",
+        filter,
+        sortBy,
+        topCategory,
+        category,
+        page - 1,
+        shopPageSize,
+        shopCategory,
+      ],
       queryFn: () =>
-        getProducts({ filter, sortBy, topCategory, category, page: page - 1 }),
+        getProducts({
+          filter,
+          sortBy,
+          topCategory,
+          category,
+          page: page - 1,
+          shopPageSize,
+        }),
     });
 
   return { isLoading, error, products, count };

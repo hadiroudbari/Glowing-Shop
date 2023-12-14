@@ -5,6 +5,7 @@ import { CiShoppingCart, CiStar } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 
 import StarRating from "../../ui/StarRating";
+import { formatCurrency } from "../../utils/helpers";
 
 const Box = styled.div`
   display: flex;
@@ -18,11 +19,20 @@ const Price = styled.span`
   font-weight: 800;
 `;
 
+const PriceDiscount = styled.span`
+  margin-top: 1rem;
+  font-weight: 600;
+
+  font-size: 1.4rem;
+  text-decoration: line-through;
+  color: var(--color-grey-500);
+`;
+
 const Title = styled.p`
   font-weight: 600;
 `;
 
-const Rating = styled.div`
+const FlexBox = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -37,6 +47,8 @@ const ImgBox = styled(NavLink)`
   position: relative;
   display: inline-block;
   overflow: hidden;
+  width: 25rem;
+  height: 33rem;
 
   &:hover div:nth-of-type(2) {
     bottom: 0;
@@ -57,7 +69,6 @@ const ImgSale = styled.div`
 
 const Img = styled.img`
   transition: all 0.3s;
-  height: 100%;
 
   &:hover {
     transform: scale(1.05);
@@ -100,12 +111,14 @@ const Icon = styled.span`
   }
 `;
 
-function ProductItem({ src }) {
+function ProductItem({ product }) {
+  const { id, image, price, discount, name } = product;
+
   return (
     <Box>
-      <ImgBox href="#">
-        <Img src={src} alt="Products" />
-        <ImgSale>-26%</ImgSale>
+      <ImgBox to={`/shop/id=${id}`}>
+        <Img src={image} alt={name} />
+        {discount > 0 ? <ImgSale>-{discount}$</ImgSale> : <div></div>}
         <IconBox>
           <Icon>
             <CiShoppingCart />
@@ -119,15 +132,22 @@ function ProductItem({ src }) {
         </IconBox>
       </ImgBox>
 
-      <Price>$29.00</Price>
-      <Title>Enriched Duo</Title>
+      {!discount ? (
+        <Price>{formatCurrency(price)}</Price>
+      ) : (
+        <FlexBox>
+          <PriceDiscount>{formatCurrency(price - discount)}</PriceDiscount>
+          <Price>{formatCurrency(price)}</Price>
+        </FlexBox>
+      )}
+      <Title>{name}</Title>
 
-      <Rating>
+      <FlexBox>
         <StarBox>
           <StarRating />
         </StarBox>
         2947 reviews
-      </Rating>
+      </FlexBox>
     </Box>
   );
 }

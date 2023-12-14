@@ -36,7 +36,7 @@ function BeautyBox({ type, src, title, text }) {
       )}
       <Box type={type}>
         <BeautyItem src={src} title={title} text={text} type={type} />
-        <ProductBox />
+        <ProductBox catId={type === "reverse" ? 6 : 3} />
       </Box>
     </>
   );

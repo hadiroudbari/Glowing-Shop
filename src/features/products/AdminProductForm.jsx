@@ -239,6 +239,10 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
           disabled={isWorking}
           {...register("discount", {
             required: "This field is required",
+            min: {
+              value: 0,
+              message: "Discount should be at least 0",
+            },
             validate: (value) =>
               Number(value) <= Number(getValues().price) ||
               "Discount should be less than price",

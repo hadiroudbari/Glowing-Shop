@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import ProductItem from "./ShopProductItem";
+import { useProducts } from "./useProducts";
 
 const ProductsGrid = styled.div`
   display: grid;
@@ -12,15 +13,14 @@ const ProductsGrid = styled.div`
   flex-shrink: 10;
 `;
 
-function ProductBox() {
+function ProductBox({ size = 6, catId }) {
+  const { products } = useProducts(size, catId);
+
   return (
     <ProductsGrid>
-      <ProductItem src="./images/Products/product-01.jpg" />
-      <ProductItem src="./images/Products/product-02.jpg" />
-      <ProductItem src="./images/Products/product-03.jpg" />
-      <ProductItem src="./images/Products/product-04.jpg" />
-      <ProductItem src="./images/Products/product-05.jpg" />
-      <ProductItem src="./images/Products/product-06.jpg" />
+      {products?.map((product) => (
+        <ProductItem product={product} key={product.id} />
+      ))}
     </ProductsGrid>
   );
 }
