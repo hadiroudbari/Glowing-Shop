@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import ProductItem from "./ShopProductItem";
 import { useProducts } from "./useProducts";
+import ShopSpinner from "../../ui/ShopSpinner";
 
 const ProductsGrid = styled.div`
   display: grid;
@@ -14,7 +15,9 @@ const ProductsGrid = styled.div`
 `;
 
 function ProductBox({ size = 6, catId }) {
-  const { products } = useProducts(size, catId);
+  const { products, isLoading } = useProducts(size, catId);
+
+  if (isLoading) return <ShopSpinner />;
 
   return (
     <ProductsGrid>
