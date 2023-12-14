@@ -55,6 +55,12 @@ function AdminProductTableMaktabStock() {
     }
   }
 
+  function handleDeleteProduct(id) {
+    setUpdateProducts((products) =>
+      products.filter((product) => product.id !== id)
+    );
+  }
+
   if (isLoading) return <Spinner />;
 
   if (!products?.length) return <Empty resourceName="products" />;
@@ -85,6 +91,7 @@ function AdminProductTableMaktabStock() {
           render={(product) => (
             <AdminProductRowMaktabStock
               handleUpdateProducts={handleUpdateProducts}
+              handleDeleteProduct={handleDeleteProduct}
               isUpdating={isUpdating}
               product={product}
               key={product.id}

@@ -41,6 +41,7 @@ const StyledId = styled.div`
 function AdminProductRowMaktabStock({
   product,
   handleUpdateProducts,
+  handleDeleteProduct,
   isUpdating,
 }) {
   const [editPrice, setEditPrice] = useState(false);
@@ -83,12 +84,16 @@ function AdminProductRowMaktabStock({
             });
           }}
           onKeyDown={(e) => {
-            if (e.code === "Escape") setEditPrice(false);
+            if (e.code === "Escape") {
+              setUpdatePrice(price);
+              setEditPrice(false);
+              handleDeleteProduct(id);
+            }
           }}
         />
       ) : (
         <Price onClick={() => setEditPrice(true)}>
-          {formatCurrency(updatePrice)}
+          {formatCurrency(price)}
         </Price>
       )}
 
@@ -105,11 +110,15 @@ function AdminProductRowMaktabStock({
             });
           }}
           onKeyDown={(e) => {
-            if (e.code === "Escape") setEditStatus(false);
+            if (e.code === "Escape") {
+              setUpdateStock(stock);
+              setEditStatus(false);
+              handleDeleteProduct(id);
+            }
           }}
         />
       ) : (
-        <Stock onClick={() => setEditStatus(true)}>{updateStock}</Stock>
+        <Stock onClick={() => setEditStatus(true)}>{stock}</Stock>
       )}
     </Table.Row>
   );
