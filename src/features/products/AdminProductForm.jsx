@@ -36,6 +36,12 @@ const StyledFormRow = styled.div`
   border-bottom: 1px solid var(--color-grey-100);
 `;
 
+const Thumbnail = styled.img`
+  width: 15rem;
+  height: 20rem;
+  margin-top: 2rem;
+`;
+
 function ProductForm({ productToEdit = {}, onCloseModal }) {
   const { createProduct, isCreating } = useCreateProduct();
   const { updateProduct, isUpdating } = useUpdateProduct();
@@ -88,6 +94,9 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
     defaultValues: isUpdateSession ? defaultValues : {},
   });
 
+  console.log(defaultValues);
+
+  const [thumbnail, setThumbnail] = useState(image || "");
   const [description, setDescription] = useState(productDescription || "");
   const [categoryId, setCategoryId] = useState(defaultTopCategoryId || 0);
   const { filterCategories, isLoading } = useFilterCategories(categoryId);
@@ -249,7 +258,7 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
         >
           <option value="">Select Status</option>
           <option value="active">Active</option>
-          <option value="acrchived">Acrchived</option>
+          <option value="archived">Archived</option>
           <option value="disabled">Disabled</option>
         </Select>
       </FormRow>
@@ -266,9 +275,12 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
           disabled={isWorking}
           {...register("image", {
             required: isUpdateSession ? false : "This field is required",
+            onChange: (e) =>
+              setThumbnail(URL.createObjectURL(e.target.files[0])),
           })}
         />
       </FormRow>
+      {thumbnail && <Thumbnail src={thumbnail} alt={thumbnail} />}
 
       <FormRow>
         <Button
