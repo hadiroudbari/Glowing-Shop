@@ -1,4 +1,4 @@
-import { PAGE_SIZE, SHOP_PAGE_SIZE } from "../utils/constants";
+import { PAGE_SIZE } from "../utils/constants";
 import supabase, { supabaseUrl } from "./supabase";
 
 export async function getProducts({
@@ -38,8 +38,8 @@ export async function getProducts({
 
   // PAGE
   if (page) {
-    const from = (page - 1) * (shopPageSize ? SHOP_PAGE_SIZE : PAGE_SIZE);
-    const to = from + (shopPageSize ? SHOP_PAGE_SIZE : PAGE_SIZE) - 1;
+    const from = (page - 1) * (shopPageSize ? shopPageSize : PAGE_SIZE);
+    const to = from + (shopPageSize ? shopPageSize : PAGE_SIZE) - 1;
 
     query = query.range(from, to);
   }

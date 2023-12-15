@@ -44,7 +44,7 @@ export async function getTopCategories() {
 }
 
 export async function getfilterCategories({ topCategory, id }) {
-  let query = supabase.from("categories").select("id, name");
+  let query = supabase.from("categories").select("id, name, topCategoryId");
 
   // FILTER TOP-CATEGORY
   if (topCategory || id)
