@@ -81,7 +81,7 @@ const CategoryList = styled.ul`
   color: var(--color-grey-500);
   overflow: hidden;
 
-  margin: 0.5rem 2.4rem;
+  margin: 0.75rem 2.4rem;
   height: ${(props) => (props.active ? "100%" : "0")};
 `;
 

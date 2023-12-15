@@ -51,13 +51,13 @@ const PaginationButton = styled.button`
   }
 `;
 
-function Pagination({ count }) {
+function Pagination({ count, pageSize }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
 
-  const pageCount = Math.ceil(count / PAGE_SIZE);
+  const pageCount = Math.ceil(count / (pageSize ? pageSize : PAGE_SIZE));
 
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
@@ -82,14 +82,23 @@ function Pagination({ count }) {
 
   return (
     <StyledPagination>
-      <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
+      <PaginationButton
+        onClick={() => {
+          prevPage();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        disabled={currentPage === 1}
+      >
         <RiArrowLeftSLine />
       </PaginationButton>
 
       {Array.from({ length: pageCount }, (_, i) => (
         <PaginationButton
           key={i}
-          onClick={exactPage}
+          onClick={(e) => {
+            exactPage(e);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
           data-page={i + 1}
           active={currentPage === i + 1 ? "true" : "false"}
         >
@@ -97,7 +106,13 @@ function Pagination({ count }) {
         </PaginationButton>
       ))}
 
-      <PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
+      <PaginationButton
+        onClick={() => {
+          nextPage();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        disabled={currentPage === pageCount}
+      >
         <RiArrowRightSLine />
       </PaginationButton>
     </StyledPagination>

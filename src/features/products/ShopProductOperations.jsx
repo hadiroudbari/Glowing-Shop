@@ -41,7 +41,8 @@ function ShopProductOperations() {
             { value: "", label: "Sort by" },
             { value: "price-asc", label: "Sort by price (low first)" },
             { value: "price-desc", label: "Sort by price (high first)" },
-            { value: "date-asc", label: "Sort by latest" },
+            { value: "created_at-asc", label: "Sort by latest" },
+            { value: "created_at-desc", label: "Sort by newest" },
           ]}
         />
       </TableOperations>

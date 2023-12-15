@@ -1,11 +1,11 @@
+import styled from "styled-components";
+
 import Header from "../ui/Header/Header";
 import HeaderNav from "../ui/Header/HeaderNav";
 import Sidebar from "../ui/ShopPage/Sidebar";
 import HeaderTitle from "../ui/Header/HeaderTitle";
 import ShopProductOperations from "../features/products/ShopProductOperations";
-import styled from "styled-components";
-import Row from "../ui/Row";
-import { useProducts } from "../features/products/useProducts";
+import Main from "../ui/ShopPage/Main";
 
 const ShopGrid = styled.div`
   display: grid;
@@ -25,10 +25,8 @@ const ShopBox = styled.div`
 `;
 
 function Shop() {
-  const { products } = useProducts(9);
-
   return (
-    <div>
+    <>
       <Header>
         <HeaderNav />
         <HeaderTitle>Explore our Shop</HeaderTitle>
@@ -37,10 +35,10 @@ function Shop() {
         <ShopProductOperations />
         <ShopGrid>
           <Sidebar />
-          <main>Main</main>
+          <Main />
         </ShopGrid>
       </ShopBox>
-    </div>
+    </>
   );
 }
 
