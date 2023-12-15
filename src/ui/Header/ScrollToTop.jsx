@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { HiOutlineArrowSmUp } from "react-icons/hi";
+import { scrollToTop } from "../../utils/helpers";
 
 const StyledBtn = styled.button`
   width: 45px;
@@ -34,7 +35,7 @@ const StyledBtn = styled.button`
 
 function ScrollToTop() {
   return (
-    <StyledBtn onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    <StyledBtn onClick={scrollToTop}>
       <HiOutlineArrowSmUp />
     </StyledBtn>
   );

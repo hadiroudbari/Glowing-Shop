@@ -1,11 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 import Logo from "./Logo";
 import NavbarOptions from "./NavbarOptions";
-import { createPortal } from "react-dom";
 import ScrollToTop from "./ScrollToTop";
+import { scrollToTop } from "../../utils/helpers";
 
 const StyledNavbar = styled.nav`
   display: flex;
@@ -61,27 +62,30 @@ function Navbar() {
   const navbar = useRef();
   const [scroll, setScroll] = useState(0);
 
-  useEffect(function () {
-    let oldScrollY = window.scrollY;
+  useEffect(
+    function () {
+      let oldScrollY = window.scrollY;
 
-    document.addEventListener("scroll", (e) => {
-      if (window.scrollY === 0) {
-        navbar.current.style.top = 0;
-        navbar.current.style.backgroundColor = "transparent";
-        navbar.current.style.boxShadow = "none";
-        return;
-      }
-      if (oldScrollY < window.scrollY) {
-        navbar.current.style.top = "-100px";
-      } else {
-        navbar.current.style.top = 0;
-        navbar.current.style.backgroundColor = "var(--color-grey-0)";
-        navbar.current.style.boxShadow = "var(--shadow-lg)";
-      }
-      oldScrollY = window.scrollY;
-      setScroll(window.scrollY);
-    });
-  }, []);
+      document.addEventListener("scroll", (e) => {
+        if (window.scrollY === 0) {
+          navbar.current.style.top = 0;
+          navbar.current.style.backgroundColor = "transparent";
+          navbar.current.style.boxShadow = "none";
+          return;
+        }
+        if (oldScrollY < window.scrollY) {
+          navbar.current.style.top = "-100px";
+        } else {
+          navbar.current.style.top = 0;
+          navbar.current.style.backgroundColor = "var(--color-grey-0)";
+          navbar.current.style.boxShadow = "var(--shadow-lg)";
+        }
+        oldScrollY = window.scrollY;
+        setScroll(window.scrollY);
+      });
+    },
+    [navbar]
+  );
 
   return (
     <>
@@ -89,27 +93,27 @@ function Navbar() {
         <Logo />
         <NavList>
           <li>
-            <NavItem to="/home">
+            <NavItem to="/home" onClick={scrollToTop}>
               <span>HOME</span>
             </NavItem>
           </li>
           <li>
-            <NavItem to="/shop">
+            <NavItem to="/shop" onClick={scrollToTop}>
               <span>SHOP</span>
             </NavItem>
           </li>
           <li>
-            <NavItem to="/contact">
+            <NavItem to="/contact" onClick={scrollToTop}>
               <span>CONTACT</span>
             </NavItem>
           </li>
           <li>
-            <NavItem to="/about">
+            <NavItem to="/about" onClick={scrollToTop}>
               <span>ABOUT</span>
             </NavItem>
           </li>
           <li>
-            <NavItem to="/admin">
+            <NavItem to="/admin" onClick={scrollToTop}>
               <span>ADMIN</span>
             </NavItem>
           </li>
