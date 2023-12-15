@@ -25,12 +25,36 @@ function Sidebar() {
 
       <SidebarItem
         title="Highlight"
-        filterField="Highlight"
+        filterField="highlight"
         options={[
           { value: "best-seller", label: "Best Seller" },
           { value: "new-arrival", label: "New Arrivals" },
           { value: "most-reviews", label: "Most Reviews" },
           { value: "hot-items", label: "Hot Items" },
+        ]}
+      />
+
+      <SidebarItem
+        title="Size"
+        filterField="size"
+        options={[
+          { value: "size-single", label: "Single" },
+          { value: "size-pack", label: "Pack" },
+          { value: "size-full", label: "Full size" },
+          { value: "size-mini", label: "Mini size" },
+        ]}
+      />
+
+      <SidebarItem
+        title="Colors"
+        filterField="colors"
+        options={[
+          { value: "color-black", label: "Black", color: "#000000" },
+          { value: "color-pack", label: "White", color: "#ffffff" },
+          { value: "color-full", label: "Pink", color: "#f06595" },
+          { value: "color-mini", label: "Maroon", color: "#672612" },
+          { value: "color-mini", label: "Red", color: "#c71818" },
+          { value: "color-mini", label: "Dark Heathe", color: "#5e5e5e" },
         ]}
       />
     </StyledSidebar>

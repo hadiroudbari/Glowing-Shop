@@ -27,6 +27,10 @@ const Text = styled.button`
   color: var(--color-grey-500);
   position: relative;
 
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
   &:hover {
     color: var(--color-grey-900);
   }
@@ -47,6 +51,16 @@ const Text = styled.button`
   }
 `;
 
+const ColorSpan = styled.span`
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: ${(props) =>
+    props.color === "#ffffff" ? "1px solid var(--color-grey-400)" : ""};
+  background-color: ${(props) => props.color};
+  border-radius: 50%;
+`;
+
 function SidebarItem({ filterField, options, title }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -64,6 +78,11 @@ function SidebarItem({ filterField, options, title }) {
         {options.map((option) => (
           <Item>
             <Text key={option.value} onClick={() => handleClick(option.value)}>
+              {filterField === "colors" ? (
+                <ColorSpan color={option.color} />
+              ) : (
+                ""
+              )}
               {option.label}
             </Text>
           </Item>
