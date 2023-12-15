@@ -13,6 +13,25 @@ export function useProducts(shopPageSize, shopCategory) {
     ? null
     : { field: "status", value: filterValue, method: "eq" };
 
+  // DISCOUNT FILTER
+  const discountFilterValue = searchParams.get("discount");
+  const discountFilter =
+    !discountFilterValue || discountFilterValue === "all"
+      ? null
+      : discountFilterValue === "no-discount"
+      ? { field: "discount", value: 0, method: "eq" }
+      : { field: "discount", value: 0, method: "gt" };
+
+  // PRICE FILTER
+  const priceFilterValue = searchParams.get("priceRange");
+  const priceFilter =
+    !priceFilterValue || priceFilterValue === "all"
+      ? null
+      : {
+          field: "price",
+          value: [...priceFilterValue.split("-")],
+        };
+
   // SORT
   const sortByRaw = searchParams.get("sortBy") || "id-asc";
   const [field, direction] = sortByRaw.split("-");
@@ -48,6 +67,8 @@ export function useProducts(shopPageSize, shopCategory) {
       page,
       shopPageSize,
       shopCategory,
+      priceFilter,
+      discountFilter,
     ],
     queryFn: () =>
       getProducts({
@@ -57,6 +78,8 @@ export function useProducts(shopPageSize, shopCategory) {
         category,
         page,
         shopPageSize,
+        priceFilter,
+        discountFilter,
       }),
   });
 
@@ -74,6 +97,8 @@ export function useProducts(shopPageSize, shopCategory) {
         page + 1,
         shopPageSize,
         shopCategory,
+        priceFilter,
+        discountFilter,
       ],
       queryFn: () =>
         getProducts({
@@ -83,6 +108,8 @@ export function useProducts(shopPageSize, shopCategory) {
           category,
           page: page + 1,
           shopPageSize,
+          priceFilter,
+          discountFilter,
         }),
     });
 
@@ -97,6 +124,8 @@ export function useProducts(shopPageSize, shopCategory) {
         page - 1,
         shopPageSize,
         shopCategory,
+        priceFilter,
+        discountFilter,
       ],
       queryFn: () =>
         getProducts({
@@ -106,6 +135,8 @@ export function useProducts(shopPageSize, shopCategory) {
           category,
           page: page - 1,
           shopPageSize,
+          priceFilter,
+          discountFilter,
         }),
     });
 

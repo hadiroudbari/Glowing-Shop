@@ -8,6 +8,8 @@ export async function getProducts({
   topCategory,
   category,
   shopPageSize,
+  priceFilter,
+  discountFilter,
 }) {
   let query = supabase
     .from("products")
@@ -18,6 +20,19 @@ export async function getProducts({
 
   // FILTER
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+
+  // DISCOUNT FILTER
+  if (discountFilter)
+    query = query[discountFilter.method || "eq"](
+      discountFilter.field,
+      discountFilter.value
+    );
+
+  // PRICE FILTER
+  if (priceFilter)
+    query = query
+      .gte(priceFilter.field, priceFilter.value[0])
+      .lte(priceFilter.field, priceFilter.value[1]);
 
   // SORT
   if (sortBy)
