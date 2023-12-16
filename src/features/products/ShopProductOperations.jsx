@@ -3,9 +3,7 @@ import styled from "styled-components";
 import Row from "../../ui/Row";
 import SortBy from "../../ui/SortBy";
 import Filter from "../../ui/Filter";
-import ShopSpinner from "../../ui/ShopSpinner";
 import TableOperations from "../../ui/TableOperations";
-import { useProducts } from "./useProducts";
 
 const Text = styled.p`
   font-size: 1.8rem;
@@ -18,15 +16,11 @@ const Count = styled.span`
   font-weight: 700;
 `;
 
-function ShopProductOperations() {
-  const { count, isLoading } = useProducts();
-
-  if (isLoading) return <ShopSpinner />;
-
+function ShopProductOperations({ count }) {
   return (
     <Row type="horizontal">
       <Text>
-        We found <Count>{count}</Count> products available for you
+        We found <Count>{count ? count : "-"}</Count> products available for you
       </Text>
 
       <TableOperations>

@@ -31,9 +31,7 @@ const ProductsGrid = styled.div`
   column-gap: 3rem;
   row-gap: 5rem;
 `;
-function Main() {
-  const { products, count, isLoading } = useProducts(9);
-
+function Main({ products, isLoading, count }) {
   if (isLoading) return <Spinner />;
 
   return (

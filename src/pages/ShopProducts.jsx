@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { useProducts } from "../features/products/useProducts";
+
 import Header from "../ui/Header/Header";
 import HeaderNav from "../ui/Header/HeaderNav";
 import Sidebar from "../ui/ShopPage/Sidebar";
@@ -25,6 +27,8 @@ const ShopBox = styled.div`
 `;
 
 function Shop() {
+  const { products, count, isLoading } = useProducts(9);
+
   return (
     <>
       <Header>
@@ -32,10 +36,10 @@ function Shop() {
         <HeaderTitle>Explore our Shop</HeaderTitle>
       </Header>
       <ShopBox>
-        <ShopProductOperations />
+        <ShopProductOperations count={count} />
         <ShopGrid>
           <Sidebar />
-          <Main />
+          <Main products={products} isLoading={isLoading} count={count} />
         </ShopGrid>
       </ShopBox>
     </>
