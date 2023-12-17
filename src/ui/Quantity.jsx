@@ -25,7 +25,7 @@ function Quantity({ maxCount, onCount }) {
   const [count, setCount] = useState(1);
 
   function increase() {
-    if (count === maxCount) return;
+    if (count >= maxCount) return;
     setCount((prev) => prev + 1);
     onCount(count + 1);
   }

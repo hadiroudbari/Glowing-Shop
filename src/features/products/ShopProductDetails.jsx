@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import { scrollToTop } from "../../utils/helpers";
 import { useProduct } from "./useProduct";
@@ -9,10 +10,8 @@ import HeaderNav from "../../ui/Header/HeaderNav";
 import DetailsBox from "../../ui/ProductDetails/DetailsBox";
 import ShopSpinner from "../../ui/ShopSpinner";
 import Quantity from "../../ui/Quantity";
-import { useState } from "react";
 import AddToCart from "../cart/ShopAddToCart";
 import FlexRow from "../../ui/FlexRow";
-import AddtoWish from "./ShopAddtoWish";
 import DetailsOperations from "../../ui/ProductDetails/DetailsOperations";
 import DetailsInfo from "../../ui/ProductDetails/DetailsInfo";
 
@@ -75,10 +74,14 @@ function ProductDetails() {
             <DetailsBox product={product} />
             <Title>Quantity :</Title>
             <FlexRow>
-              <Quantity maxCount={stock} onCount={setCount} />
-              <StockText>{stock} Available in the Stock, Order Now !</StockText>
+              {stock ? <Quantity maxCount={stock} onCount={setCount} /> : ""}
+              <StockText>
+                {stock
+                  ? `${stock} Available in the Stock, Order Now !`
+                  : "Sorry, this Product is unavailable !"}
+              </StockText>
             </FlexRow>
-            <AddToCart />
+            <AddToCart stock={stock} />
             <DetailsOperations />
             <DetailsInfo product={product} />
           </StyledDetailsBox>
