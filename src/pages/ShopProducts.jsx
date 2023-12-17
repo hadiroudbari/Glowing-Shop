@@ -1,9 +1,7 @@
-
-
 import Header from "../ui/Header/Header";
 import HeaderNav from "../ui/Header/HeaderNav";
 import HeaderTitle from "../ui/Header/HeaderTitle";
-import Products from "../features/products/ShopProducts";
+import Products from "../features/products/ShopProductsAll";
 
 function Shop() {
   return (

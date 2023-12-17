@@ -100,6 +100,8 @@ function SidebarCategory() {
   function handleClick(value) {
     searchParams.set("sortByCategory", value);
     if (searchParams.get("page")) searchParams.set("page", 1);
+    if (searchParams.get("sortByTopCategory"))
+      searchParams.delete("sortByTopCategory");
 
     setSearchParams(searchParams);
   }
