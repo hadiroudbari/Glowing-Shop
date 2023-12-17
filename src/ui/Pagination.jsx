@@ -1,9 +1,8 @@
+import styled from "styled-components";
 import { useSearchParams } from "react-router-dom";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
-import styled from "styled-components";
 
 import { PAGE_SIZE } from "../utils/constants";
-import { scrollToTop } from "../utils/helpers";
 
 const StyledPagination = styled.div`
   width: 100%;
@@ -83,23 +82,14 @@ function Pagination({ count, pageSize }) {
 
   return (
     <StyledPagination>
-      <PaginationButton
-        onClick={() => {
-          prevPage();
-          scrollToTop(250);
-        }}
-        disabled={currentPage === 1}
-      >
+      <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
         <RiArrowLeftSLine />
       </PaginationButton>
 
       {Array.from({ length: pageCount }, (_, i) => (
         <PaginationButton
           key={i}
-          onClick={(e) => {
-            exactPage(e);
-            scrollToTop(250);
-          }}
+          onClick={exactPage}
           data-page={i + 1}
           active={currentPage === i + 1 ? "true" : "false"}
         >
@@ -107,13 +97,7 @@ function Pagination({ count, pageSize }) {
         </PaginationButton>
       ))}
 
-      <PaginationButton
-        onClick={() => {
-          nextPage();
-          scrollToTop(250);
-        }}
-        disabled={currentPage === pageCount}
-      >
+      <PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
         <RiArrowRightSLine />
       </PaginationButton>
     </StyledPagination>

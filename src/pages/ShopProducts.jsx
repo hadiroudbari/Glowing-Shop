@@ -8,6 +8,7 @@ import Sidebar from "../ui/ShopPage/Sidebar";
 import HeaderTitle from "../ui/Header/HeaderTitle";
 import ShopProductOperations from "../features/products/ShopProductOperations";
 import Main from "../ui/ShopPage/Main";
+import { scrollToTop } from "../utils/helpers";
 
 const ShopGrid = styled.div`
   display: grid;
@@ -28,6 +29,8 @@ const ShopBox = styled.div`
 
 function Shop() {
   const { products, count, isLoading } = useProducts(9);
+
+  if (!isLoading) scrollToTop(250);
 
   return (
     <>
