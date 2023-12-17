@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import HeadingBox from "../HeadingBox";
 import Button from "../Button";
+import { NavLink } from "react-router-dom";
 
 const CategoryGrid = styled.div`
   display: grid;
@@ -35,22 +36,30 @@ function CategoryBox() {
       <CategoryGrid>
         <CategoryItem style={{ gridArea: "item-1" }}>
           <img src="./images/Categories/banner-18.jpg" alt="Categories" />
-          <Button bg="light">Skincare</Button>
+          <NavLink to="/shop/sortByTopCategory=2">
+            <Button bg="light">Skincare</Button>
+          </NavLink>
         </CategoryItem>
 
         <CategoryItem style={{ gridArea: "item-2" }}>
           <img src="./images/Categories/banner-15.jpg" alt="Categories" />
-          <Button bg="light">Bodycare</Button>
+          <NavLink to="/shop/sortByTopCategory=1">
+            <Button bg="light">Bodycare</Button>
+          </NavLink>
         </CategoryItem>
 
         <CategoryItem style={{ gridArea: "item-3" }}>
           <img src="./images/Categories/banner-16.jpg" alt="Categories" />
-          <Button bg="light">Accessories</Button>
+          <NavLink to="/shop/sortByTopCategory=4">
+            <Button bg="light">Accessories</Button>
+          </NavLink>
         </CategoryItem>
 
         <CategoryItem style={{ gridArea: "item-4" }}>
           <img src="./images/Categories/banner-17.jpg" alt="Categories" />
-          <Button bg="light">Haircare</Button>
+          <NavLink to="/shop/sortByTopCategory=3">
+            <Button bg="light">Haircare</Button>
+          </NavLink>
         </CategoryItem>
       </CategoryGrid>
     </>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import Button from "../Button";
+import { NavLink } from "react-router-dom";
 
 const Box = styled.div`
   display: flex;
@@ -63,7 +64,9 @@ function DiscoverItem({ type, src, title, text, btn }) {
             <Header>{title}</Header>
           </>
         )}
-        <Button bg="light">{btn}</Button>
+        <NavLink to="/shop">
+          <Button bg="light">{btn}</Button>
+        </NavLink>
       </TextBox>
     </Box>
   );
