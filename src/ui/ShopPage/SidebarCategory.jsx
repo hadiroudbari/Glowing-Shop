@@ -70,6 +70,8 @@ const Item = styled.li`
 
 const CategoryText = styled.button`
   font-weight: 600;
+  color: ${(props) =>
+    props.active ? "var(--color-grey-900)" : "var(--color-grey-500)"};
 `;
 
 const CategoryList = styled.ul`
@@ -87,14 +89,26 @@ const CategoryList = styled.ul`
 
 function SidebarCategory() {
   const { topCategories } = useTopCategories();
-  const { filterCategories } = useFilterCategories();
+  const { filterCategories } = useFilterCategories("", false);
 
-  const [expander, setExpander] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const currentExpander = Number(searchParams.get("sortByTopCategory")) || 0;
+  const currentCategory = Number(searchParams.get("sortByCategory")) || null;
+
+  const [expander, setExpander] = useState(currentExpander);
 
   function handleClick(value) {
     searchParams.set("sortByCategory", value);
     if (searchParams.get("page")) searchParams.set("page", 1);
+
+    setSearchParams(searchParams);
+  }
+
+  function handleTopClick(value) {
+    searchParams.set("sortByTopCategory", value);
+    if (searchParams.get("page")) searchParams.set("page", 1);
+    if (searchParams.get("sortByCategory"))
+      searchParams.delete("sortByCategory");
 
     setSearchParams(searchParams);
   }
@@ -107,9 +121,10 @@ function SidebarCategory() {
           <Fragment key={topCat.id}>
             <TopCategoryItem active={expander === topCat.id}>
               <TopCategoryText
-                onClick={() =>
-                  setExpander((prev) => (topCat.id === prev ? 0 : topCat.id))
-                }
+                onClick={() => {
+                  setExpander((prev) => (topCat.id === prev ? 0 : topCat.id));
+                  handleTopClick(topCat.id);
+                }}
               >
                 {topCat.name}
               </TopCategoryText>
@@ -127,7 +142,10 @@ function SidebarCategory() {
                 ? filterCategories?.map((cat) =>
                     cat.topCategoryId === topCat.id ? (
                       <Item key={cat.id}>
-                        <CategoryText onClick={() => handleClick(cat.id)}>
+                        <CategoryText
+                          onClick={() => handleClick(cat.id)}
+                          active={cat.id === currentCategory}
+                        >
                           {cat.name}
                         </CategoryText>
                       </Item>

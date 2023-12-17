@@ -38,7 +38,7 @@ function Main({ products, isLoading, count }) {
     <StyledMain>
       <ProductsGrid>
         {products?.map((product) => (
-          <ProductItem product={product} />
+          <ProductItem product={product} key={product.id} />
         ))}
       </ProductsGrid>
       <PaginationBox>

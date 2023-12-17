@@ -76,8 +76,8 @@ function SidebarItem({ filterField, options, title }) {
       <Title>{title}</Title>
       <List>
         {options.map((option) => (
-          <Item>
-            <Text key={option.value} onClick={() => handleClick(option.value)}>
+          <Item key={option.label}>
+            <Text onClick={() => handleClick(option.value)}>
               {filterField === "colors" ? (
                 <ColorSpan color={option.color} />
               ) : (
