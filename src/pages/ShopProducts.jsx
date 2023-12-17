@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { useProducts } from "../features/products/useProducts";
+import { scrollToTop } from "../utils/helpers";
 
 import Header from "../ui/Header/Header";
 import HeaderNav from "../ui/Header/HeaderNav";
@@ -8,7 +9,6 @@ import Sidebar from "../ui/ShopPage/Sidebar";
 import HeaderTitle from "../ui/Header/HeaderTitle";
 import ShopProductOperations from "../features/products/ShopProductOperations";
 import Main from "../ui/ShopPage/Main";
-import { scrollToTop } from "../utils/helpers";
 
 const ShopGrid = styled.div`
   display: grid;
@@ -19,7 +19,7 @@ const ShopGrid = styled.div`
   margin-bottom: 8.6rem;
 `;
 
-const ShopBox = styled.div`
+const ShopContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -34,17 +34,17 @@ function Shop() {
 
   return (
     <>
-      <Header>
+      <Header type="shop">
         <HeaderNav />
         <HeaderTitle>Explore our Shop</HeaderTitle>
       </Header>
-      <ShopBox>
+      <ShopContainer>
         <ShopProductOperations count={count} />
         <ShopGrid>
           <Sidebar />
           <Main products={products} isLoading={isLoading} count={count} />
         </ShopGrid>
-      </ShopBox>
+      </ShopContainer>
     </>
   );
 }
