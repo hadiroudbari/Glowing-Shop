@@ -6,16 +6,19 @@ import { useProduct } from "./useProduct";
 import DetailsPictures from "../../ui/ProductDetails/DetailsPictures";
 import Header from "../../ui/Header/Header";
 import HeaderNav from "../../ui/Header/HeaderNav";
+import DetailsBox from "../../ui/ProductDetails/DetailsBox";
+import ShopSpinner from "../../ui/ShopSpinner";
 
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  margin-bottom: 10rem;
   padding: 0 15rem;
   gap: 4.8rem;
 `;
 
-const DetailsBox = styled.div`
+const StyledDetailsBox = styled.div`
   display: flex;
   align-items: center;
   gap: 2.4rem;
@@ -24,9 +27,12 @@ const DetailsBox = styled.div`
 function ProductDetails() {
   const { product, isLoading } = useProduct();
 
+  if (isLoading) return <ShopSpinner />;
   if (!isLoading) scrollToTop();
 
-  console.log(product);
+  const {
+    pictures: { images },
+  } = product;
 
   return (
     <>
@@ -35,9 +41,10 @@ function ProductDetails() {
       </Header>
 
       <DetailsContainer>
-        <DetailsBox>
-          <DetailsPictures />
-        </DetailsBox>
+        <StyledDetailsBox>
+          <DetailsPictures images={images} />
+          <DetailsBox />
+        </StyledDetailsBox>
       </DetailsContainer>
     </>
   );
