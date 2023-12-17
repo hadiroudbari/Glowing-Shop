@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import Button from "../Button";
+import { NavLink } from "react-router-dom";
 
 const Box = styled.div`
   position: relative;
@@ -45,7 +46,9 @@ function BeautyItem({ src, title, text, type }) {
       <TextBox>
         <Span>{title}</Span>
         <Text>{text}</Text>
-        <Button bg="light">Explore More</Button>
+        <NavLink to="/shop">
+          <Button bg="light">Explore More</Button>
+        </NavLink>
       </TextBox>
     </Box>
   );

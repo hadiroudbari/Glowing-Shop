@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { useEffect, useState } from "react";
 import Button from "../Button";
+import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
   ${(props) =>
@@ -95,7 +96,9 @@ function Landing() {
           Made using clean, non-toxic ingredients, our products are designed for
           everyone.
         </Text>
-        <Button bg="dark">Shop Now</Button>
+        <NavLink to="/shop">
+          <Button bg="dark">Shop Now</Button>
+        </NavLink>
       </SpecBox>
     </>
   );
