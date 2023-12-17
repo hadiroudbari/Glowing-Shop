@@ -8,5 +8,6 @@ export function scrollToTop(value = 0) {
 }
 
 export function formatDescription(text) {
-  return text.replace("<p>", "").replace("</p>", "");
+  const regex = /(<([^>]+)>)/gi;
+  return text.replace(regex, "");
 }
