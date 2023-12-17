@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import { CiShoppingCart, CiStar } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 
-import StarRating from "../../ui/StarRating";
 import { formatCurrency } from "../../utils/helpers";
+import StarRating from "../../ui/StarRating";
 
 const Box = styled.div`
   display: flex;
@@ -112,11 +112,11 @@ const Icon = styled.span`
 `;
 
 function ProductItem({ product }) {
-  const { id, image, price, discount, name } = product;
+  const { id: productId, image, price, discount, name } = product;
 
   return (
     <Box>
-      <ImgBox to={`/shop/id=${id}`}>
+      <ImgBox to={`/shop/${productId}`}>
         <Img src={image} alt={name} />
         {discount > 0 ? <ImgSale>-{discount}$</ImgSale> : <div></div>}
         <IconBox>

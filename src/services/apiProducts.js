@@ -69,6 +69,21 @@ export async function getProducts({
   return { products, count };
 }
 
+export async function getProduct(id) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("* ,categories(*), topCategories(*)")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Product not found");
+  }
+
+  return data;
+}
+
 export async function createUpdateProduct(newProduct, id) {
   const hasImagePath = newProduct.image?.startsWith?.(supabaseUrl);
 

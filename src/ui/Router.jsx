@@ -8,8 +8,8 @@ import Cart from "../pages/ShopCart";
 import About from "../pages/ShopAbout";
 import Contact from "../pages/ShopContact";
 import Checkout from "../pages/ShopCheckout";
-import ProductDetails from "../pages/ShopProductDetails";
 import Profile from "../pages/CustomerProfile";
+import SingleProduct from "../pages/ShopProduct";
 import PageNotFound from "../pages/PageNotFound";
 import ProtectedRoute from "../ui/ProtectedRoute";
 import AdminLayout from "../ui/AdminPage/AdminLayout";
@@ -30,7 +30,7 @@ function Router() {
           <Route index element={<Navigate replace to="home" />} />
           <Route path="home" element={<Home />} />
           <Route path="shop" element={<Shop />} />
-          <Route path="shop/:productId" element={<ProductDetails />} />
+          <Route path="shop/:productId" element={<SingleProduct />} />
           <Route path="cart" element={<Cart />} />
           <Route path="orders" element={<Orders />} />
           <Route path="checkout" element={<Checkout />} />

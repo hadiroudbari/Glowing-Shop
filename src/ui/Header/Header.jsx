@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Navbar from "./Navbar";
 
 const StyledHeader = styled.header`
-  height: ${(props) => (props.type === "home" ? "100vh" : "40vh")};
+  height: ${(props) =>
+    props.type === "home" ? "100vh" : props.type === "shop" ? "40vh" : "20vh"};
   position: relative;
 `;
 
