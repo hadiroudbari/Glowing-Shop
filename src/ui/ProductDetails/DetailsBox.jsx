@@ -71,8 +71,6 @@ const SpaceLine = styled.span`
 function DetailsBox({ product }) {
   const { price, discount, description, name } = product;
 
-  console.log(description);
-
   return (
     <StyledDetailsBox>
       <FlexRow>

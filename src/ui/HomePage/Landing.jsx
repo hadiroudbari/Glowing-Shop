@@ -7,19 +7,19 @@ const Container = styled.div`
   ${(props) =>
     props.bgnum === 0 &&
     css`
-      background-image: url("./images/Hero/hero-slider-08.jpg");
+      background-image: url("../images/Hero/hero-slider-08.jpg");
     `};
 
   ${(props) =>
     props.bgnum === 1 &&
     css`
-      background-image: url("./images/Hero/hero-slider-19.jpg");
+      background-image: url("../images/Hero/hero-slider-19.jpg");
     `};
 
   ${(props) =>
     props.bgnum === 2 &&
     css`
-      background-image: url("./images/Hero/hero-slider-02.jpg");
+      background-image: url("../images/Hero/hero-slider-02.jpg");
     `};
 
   background-size: cover;

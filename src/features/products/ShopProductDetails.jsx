@@ -14,12 +14,16 @@ import AddToCart from "../cart/ShopAddToCart";
 import FlexRow from "../../ui/FlexRow";
 import DetailsOperations from "../../ui/ProductDetails/DetailsOperations";
 import DetailsInfo from "../../ui/ProductDetails/DetailsInfo";
+import { useNavigate } from "react-router";
+import DetailsMore from "../../ui/ProductDetails/DetailsMore";
+import { useProducts } from "./useProducts";
+import DetailsAlsoLike from "../../ui/ProductDetails/DetailsAlsoLike";
 
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   padding: 0 20rem;
   gap: 4.8rem;
 `;
@@ -45,21 +49,31 @@ const StockText = styled.p`
   font-weight: 600;
 `;
 
+const SpaceLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-grey-200);
+  margin: 5rem 0;
+`;
+
 function ProductDetails() {
   const { product, isLoading } = useProduct();
+  const { products, isLoading: isLoading2 } = useProducts(10);
   const [count, setCount] = useState();
 
-  if (isLoading) {
-    scrollToTop();
+  const navigate = useNavigate();
+
+  if (isLoading || isLoading2) {
     return <ShopSpinner />;
   }
+
+  if (!product) navigate("/shop");
+  if (product) scrollToTop();
 
   const {
     pictures: { images },
     stock,
   } = product;
-
-  console.log(count);
 
   return (
     <>
@@ -86,7 +100,11 @@ function ProductDetails() {
             <DetailsInfo product={product} />
           </StyledDetailsBox>
         </StyledProductDetails>
+        <SpaceLine />
+        <DetailsMore />
+        <SpaceLine />
       </DetailsContainer>
+      <DetailsAlsoLike products={products} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { CiShoppingCart, CiStar } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 
@@ -88,7 +88,7 @@ const IconBox = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-const Icon = styled.span`
+const Icon = styled.button`
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -113,6 +113,7 @@ const Icon = styled.span`
 
 function ProductItem({ product }) {
   const { id: productId, image, price, discount, name } = product;
+  const navigate = useNavigate();
 
   return (
     <Box>
@@ -126,7 +127,7 @@ function ProductItem({ product }) {
           <Icon>
             <CiStar />
           </Icon>
-          <Icon>
+          <Icon onClick={() => navigate(`/shop/${productId}`)}>
             <IoEyeOutline />
           </Icon>
         </IconBox>
