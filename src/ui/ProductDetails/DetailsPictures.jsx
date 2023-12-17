@@ -32,8 +32,6 @@ const ImageColumn = styled.div`
 function DetailsPictures({ images }) {
   const [imageId, setImageId] = useState(0);
 
-  console.log(images);
-
   return (
     <Box>
       <ImageColumn>

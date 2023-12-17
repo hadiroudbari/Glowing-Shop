@@ -6,3 +6,7 @@ export const formatCurrency = (value) =>
 export function scrollToTop(value = 0) {
   return window.scrollTo({ top: value, behavior: "smooth" });
 }
+
+export function formatDescription(text) {
+  return text.replace("<p>", "").replace("</p>", "");
+}

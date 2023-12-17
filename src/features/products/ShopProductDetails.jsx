@@ -8,31 +8,59 @@ import Header from "../../ui/Header/Header";
 import HeaderNav from "../../ui/Header/HeaderNav";
 import DetailsBox from "../../ui/ProductDetails/DetailsBox";
 import ShopSpinner from "../../ui/ShopSpinner";
+import Quantity from "../../ui/Quantity";
+import { useState } from "react";
+import AddToCart from "../cart/ShopAddToCart";
+import FlexRow from "../../ui/FlexRow";
+import AddtoWish from "./ShopAddtoWish";
+import DetailsOperations from "../../ui/ProductDetails/DetailsOperations";
+import DetailsInfo from "../../ui/ProductDetails/DetailsInfo";
 
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
 
   margin-bottom: 10rem;
-  padding: 0 15rem;
+  padding: 0 20rem;
+  gap: 4.8rem;
+`;
+
+const StyledProductDetails = styled.div`
+  display: flex;
   gap: 4.8rem;
 `;
 
 const StyledDetailsBox = styled.div`
   display: flex;
-  align-items: center;
-  gap: 2.4rem;
+  flex-direction: column;
+  gap: 1.6rem;
+`;
+
+const Title = styled.p`
+  font-weight: 800;
+`;
+
+const StockText = styled.p`
+  font-size: 1.4rem;
+  color: var(--color-grey-500);
+  font-weight: 600;
 `;
 
 function ProductDetails() {
   const { product, isLoading } = useProduct();
+  const [count, setCount] = useState();
 
-  if (isLoading) return <ShopSpinner />;
-  if (!isLoading) scrollToTop();
+  if (isLoading) {
+    scrollToTop();
+    return <ShopSpinner />;
+  }
 
   const {
     pictures: { images },
+    stock,
   } = product;
+
+  console.log(count);
 
   return (
     <>
@@ -41,10 +69,20 @@ function ProductDetails() {
       </Header>
 
       <DetailsContainer>
-        <StyledDetailsBox>
+        <StyledProductDetails>
           <DetailsPictures images={images} />
-          <DetailsBox />
-        </StyledDetailsBox>
+          <StyledDetailsBox>
+            <DetailsBox product={product} />
+            <Title>Quantity :</Title>
+            <FlexRow>
+              <Quantity maxCount={stock} onCount={setCount} />
+              <StockText>{stock} Available in the Stock, Order Now !</StockText>
+            </FlexRow>
+            <AddToCart />
+            <DetailsOperations />
+            <DetailsInfo product={product} />
+          </StyledDetailsBox>
+        </StyledProductDetails>
       </DetailsContainer>
     </>
   );
