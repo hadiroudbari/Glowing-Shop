@@ -28,12 +28,20 @@ const SpaceLine = styled.span`
   background-color: var(--color-grey-500);
 `;
 
-function HeaderNav() {
+function HeaderNav({ product }) {
   return (
     <StyledNav>
       <NavLink to="/home">Home</NavLink>
       <SpaceLine />
-      <CurrentPage to="/shop">Shopping</CurrentPage>
+      {product ? (
+        <>
+          <NavLink to="/shop">Shop</NavLink>
+          <SpaceLine />
+          <CurrentPage to={`/shop/${product?.id}`}>{product?.name}</CurrentPage>
+        </>
+      ) : (
+        <CurrentPage to="/shop">Shop</CurrentPage>
+      )}
     </StyledNav>
   );
 }
