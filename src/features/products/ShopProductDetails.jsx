@@ -64,15 +64,16 @@ function ProductDetails() {
   const navigate = useNavigate();
 
   if (isLoading || isLoading2) {
+    scrollToTop();
     return <ShopSpinner />;
   }
 
   if (!product) navigate("/shop");
-  if (product) scrollToTop();
 
   const {
     pictures: { images },
     stock,
+    image,
   } = product;
 
   return (
@@ -83,7 +84,7 @@ function ProductDetails() {
 
       <DetailsContainer>
         <StyledProductDetails>
-          <DetailsPictures images={images} />
+          <DetailsPictures images={images} image={image} />
           <StyledDetailsBox>
             <DetailsBox product={product} />
             <Title>Quantity :</Title>

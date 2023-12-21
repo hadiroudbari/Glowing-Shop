@@ -29,7 +29,7 @@ const ImageColumn = styled.div`
   gap: 2.4rem;
 `;
 
-function DetailsPictures({ images }) {
+function DetailsPictures({ images, image }) {
   const [imageId, setImageId] = useState(0);
 
   return (
@@ -45,7 +45,10 @@ function DetailsPictures({ images }) {
           </AsideButton>
         ))}
       </ImageColumn>
-      <ImageMain src={images[imageId]} alt={images[imageId]} />
+      <ImageMain
+        src={images.length ? images[imageId] : image}
+        alt={images[imageId]}
+      />
     </Box>
   );
 }
