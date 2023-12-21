@@ -1,9 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Suspense, lazy } from "react";
 
 import GlobalStyles from "./styles/GlobalStyles";
-import Router from "./ui/Router";
 import ToasterConfig from "./ui/Toaster";
+import ShopSpinner from "./ui/ShopSpinner";
+
+const Router = lazy(() => import("./ui/Router"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +22,9 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
 
-      <Router />
+      <Suspense fallback={<ShopSpinner />}>
+        <Router />
+      </Suspense>
 
       <ToasterConfig />
     </QueryClientProvider>
