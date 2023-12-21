@@ -186,65 +186,6 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
         )}
       </FormRow>
 
-<<<<<<< HEAD
-      <FormRow label="Price" error={errors?.price?.message}>
-        <Input
-          type="number"
-          id="price"
-          disabled={isWorking}
-          {...register("price", {
-            required: "This field is required",
-            min: {
-              value: 0,
-              message: "Price should be at least 0",
-            },
-            max: {
-              value: 1000,
-              message: "Price should be less than 1000",
-            },
-          })}
-        />
-      </FormRow>
-
-      <FormRow label="Stock" error={errors?.stock?.message}>
-        <Input
-          type="number"
-          id="stock"
-          disabled={isWorking}
-          {...register("stock", {
-            required: "This field is required",
-            min: {
-              value: 0,
-              message: "Stock should be at least 0",
-            },
-            max: {
-              value: 1000,
-              message: "Stock should be less than 1000",
-            },
-          })}
-        />
-      </FormRow>
-
-      <FormRow label="Discount" error={errors?.discount?.message}>
-        <Input
-          type="number"
-          id="discount"
-          disabled={isWorking}
-          {...register("discount", {
-            required: "This field is required",
-            min: {
-              value: 0,
-              message: "Discount should be at least 0",
-            },
-            validate: (value) =>
-              Number(value) <= Number(getValues().price) ||
-              "Discount should be less than price",
-          })}
-        />
-      </FormRow>
-
-=======
->>>>>>> MaktabPagesUpdate
       <FormRow label="Status" error={errors?.status?.message}>
         <Select
           id="status"
