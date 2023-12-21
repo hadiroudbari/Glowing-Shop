@@ -53,12 +53,8 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
     id: productId,
     description: productDescription,
     name,
-    pictures,
-    price,
-    stock,
-    discount,
-    status,
     image,
+    status,
   } = productToEdit;
 
   const isUpdateSession = Boolean(productId);
@@ -74,12 +70,8 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
     categoryId: defaultcategoryId,
     topCategoryId: defaultTopCategoryId,
     name,
-    pictures,
-    price,
-    stock,
-    discount,
-    status,
     image,
+    status,
     description: productDescription,
   };
 
@@ -194,6 +186,7 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
         )}
       </FormRow>
 
+<<<<<<< HEAD
       <FormRow label="Price" error={errors?.price?.message}>
         <Input
           type="number"
@@ -250,6 +243,8 @@ function ProductForm({ productToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
+=======
+>>>>>>> MaktabPagesUpdate
       <FormRow label="Status" error={errors?.status?.message}>
         <Select
           id="status"

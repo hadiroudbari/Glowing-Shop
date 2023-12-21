@@ -94,6 +94,18 @@ function AdminNav() {
             <span>Settings</span>
           </StyledNavLink>
         </li>
+        <li>
+          <StyledNavLink to="productsMaktab">
+            <HiShoppingBag />
+            <span>Products Maktab</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="productsMaktabStock">
+            <HiShoppingBag />
+            <span>Products Maktab Stock</span>
+          </StyledNavLink>
+        </li>
       </NavList>
     </nav>
   );
