@@ -1,7 +1,7 @@
+import styled from "styled-components";
+import { useSearchParams } from "react-router-dom";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
-import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
 import { PAGE_SIZE } from "../utils/constants";
 
 const StyledPagination = styled.div`
@@ -51,13 +51,13 @@ const PaginationButton = styled.button`
   }
 `;
 
-function Pagination({ count }) {
+function Pagination({ count, pageSize }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
 
-  const pageCount = Math.ceil(count / PAGE_SIZE);
+  const pageCount = Math.ceil(count / (pageSize ? pageSize : PAGE_SIZE));
 
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;

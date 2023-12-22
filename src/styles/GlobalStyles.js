@@ -104,6 +104,7 @@ const GlobalStyles = createGlobalStyle`
   
 }
 
+
 *,
 *::before,
 *::after {
@@ -154,7 +155,6 @@ input:disabled {
 }
 
 input:focus,
-button:focus,
 textarea:focus,
 select:focus {
   outline: 2px solid var(--color-brand-900);
@@ -186,8 +186,44 @@ h6 {
   hyphens: auto;
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: var(--color-grey-50);
+  border: 1px solid var(--color-grey-300);
+
+  &::after {
+    font-size: 1.6rem;
+    color: var(--color-grey-900)
+  }
+}
+
 img {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
 
   /* For dark mode */

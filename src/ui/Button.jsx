@@ -27,6 +27,23 @@ const variations = {
       color: var(--color-grey-0);
     }
   `,
+  white: css`
+    color: var(--color-grey-900);
+    background: var(--color-grey-0);
+    border: 1px solid var(--color-grey-300);
+
+    &:hover {
+      background-color: var(--color-grey-50);
+    }
+  `,
+  danger: css`
+    color: var(--color-grey-0);
+    background: var(--color-red-700);
+
+    &:hover {
+      background: var(--color-red-800);
+    }
+  `,
 };
 
 const sizes = {
@@ -59,7 +76,7 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
-  variation: "dark",
+  bg: "dark",
   size: "medium",
 };
 

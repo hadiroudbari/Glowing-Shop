@@ -42,7 +42,7 @@ export function useTopCategories() {
   return { isLoading, error, topCategories };
 }
 
-export function useFilterCategories() {
+export function useFilterCategories(id, filter) {
   const [searchParams] = useSearchParams();
 
   // FILTER
@@ -56,8 +56,8 @@ export function useFilterCategories() {
     data: filterCategories,
     error,
   } = useQuery({
-    queryKey: ["filterCategories", topCategory],
-    queryFn: () => getfilterCategories({ topCategory }),
+    queryKey: ["filterCategories", topCategory, id, filter],
+    queryFn: () => getfilterCategories({ topCategory, id, filter }),
   });
 
   return { isLoading, error, filterCategories };

@@ -1,9 +1,12 @@
-import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 const StyledFilter = styled.div`
-  border: 1px solid var(--color-grey-100);
+  border: 1px solid
+    ${(props) =>
+      props.type === "white"
+        ? "var(--color-grey-100)"
+        : "var(--color-grey-300)"};
   background-color: var(--color-grey-0);
   box-shadow: var(--shadow-sm);
   border-radius: var(--border-radius-sm);
@@ -36,7 +39,7 @@ const FilterButton = styled.button`
   }
 `;
 
-function Filter({ filterField, options }) {
+function Filter({ filterField, options, type = "white" }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentFilter = searchParams.get(filterField) || options.at(0).value;
 
@@ -48,7 +51,7 @@ function Filter({ filterField, options }) {
   }
 
   return (
-    <StyledFilter>
+    <StyledFilter type={type}>
       {options.map((option) => (
         <FilterButton
           key={option.value}
