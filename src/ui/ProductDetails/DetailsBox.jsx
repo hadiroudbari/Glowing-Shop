@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { formatCurrency, formatDescription } from "../../utils/helpers";
+import { formatCurrency } from "../../utils/helpers";
 import StarRating from "../../ui/StarRating";
 import FlexRow from "../FlexRow";
 
@@ -90,7 +90,7 @@ function DetailsBox({ product }) {
         <Review>Read 2947 reviews</Review>
       </FlexRow>
 
-      <Description>{formatDescription(description)}</Description>
+      <Description dangerouslySetInnerHTML={{ __html: description }} />
     </StyledDetailsBox>
   );
 }
