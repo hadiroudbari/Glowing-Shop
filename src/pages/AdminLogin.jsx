@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Logo from "../ui/Logo";
+import Logo from "../ui/Header/Logo";
 import Heading from "../ui/Heading";
 import AdminLoginForm from "../features/authentication/AdminLoginForm";
 

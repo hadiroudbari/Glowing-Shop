@@ -6,11 +6,13 @@ import Table from "../../ui/Table";
 import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import CreateProductForm from "./AdminCreateProductForm";
+import ProductForm from "./AdminProductForm";
+import { useDeleteProduct } from "./useDeleteProduct";
 
 const Img = styled.img`
   display: block;
   width: 6.4rem;
+  height: 6.4rem;
   padding: 1rem;
   object-fit: cover;
   object-position: center;
@@ -69,10 +71,12 @@ const StyledId = styled.div`
 `;
 
 function AdminProductRow({ product }) {
+  const { deleteProduct, isDeleting } = useDeleteProduct();
+
   const {
     id,
     name,
-    pictures: { images },
+    image,
     categories,
     topCategories,
     price,
@@ -88,7 +92,7 @@ function AdminProductRow({ product }) {
         {id >= 10 && "0" + id}
         {id >= 100 && id}
       </StyledId>
-      <Img src={images[0]} />
+      <Img src={image} />
       <Product>{name}</Product>
       <div>
         {topCategories.name} / <br /> <Category>{categories.name}</Category>
@@ -104,24 +108,30 @@ function AdminProductRow({ product }) {
       <div>
         <Modal>
           <Menus.Menu>
-            <Menus.Toggle id={1} />
+            <Menus.Toggle id={id} />
 
-            <Menus.List id={1}>
+            <Menus.List id={id}>
               <Modal.Open opens="edit">
                 <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
               </Modal.Open>
 
               <Modal.Open opens="delete">
-                <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                <Menus.Button icon={<HiTrash />} disabled={isDeleting}>
+                  Delete
+                </Menus.Button>
               </Modal.Open>
             </Menus.List>
 
             <Modal.Window name="edit">
-              <CreateProductForm cabinToEdit="" />
+              <ProductForm productToEdit={product} />
             </Modal.Window>
 
             <Modal.Window name="delete">
-              <ConfirmDelete resourceName="cabins" />
+              <ConfirmDelete
+                resourceName="product"
+                disabled={isDeleting}
+                onConfirm={() => deleteProduct(id)}
+              />
             </Modal.Window>
           </Menus.Menu>
         </Modal>

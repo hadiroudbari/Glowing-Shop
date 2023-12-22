@@ -8,14 +8,14 @@ const Row = styled.div`
     css`
       justify-content: space-between;
       align-items: center;
-      gap: ${(props) => props.gap + "rem"};
+      gap: ${(props) => (props.gap ? props.gap + "rem" : "")};
     `}
 
   ${(props) =>
     props.type === "vertical" &&
     css`
       flex-direction: column;
-      gap: 1.6rem;
+      gap: 2.4rem;
     `}
 `;
 

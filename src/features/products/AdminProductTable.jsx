@@ -5,9 +5,20 @@ import Spinner from "../../ui/Spinner";
 import Pagination from "../../ui/Pagination";
 import AdminProductRow from "./AdminProductRow";
 import { useProducts } from "./useProducts";
+import { useSearchParams } from "react-router-dom";
+import { PAGE_SIZE } from "../../utils/constants";
 
 function AdminProductTable() {
   const { products, isLoading, count } = useProducts();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentPage = searchParams.get("page");
+  const pageCount = Math.ceil(count / PAGE_SIZE);
+
+  if (currentPage > pageCount) {
+    searchParams.set("page", currentPage - 1);
+    setSearchParams(searchParams);
+  }
 
   if (isLoading) return <Spinner />;
 
@@ -15,7 +26,7 @@ function AdminProductTable() {
 
   return (
     <Menus>
-      <Table columns="0.3fr 0.6fr 3fr 2fr 1fr 1fr 1fr 1fr 1fr">
+      <Table columns="0.5fr 1fr 3fr 2fr 1fr 1fr 1fr 1fr 1fr">
         <Table.Header>
           <div></div>
           <div></div>

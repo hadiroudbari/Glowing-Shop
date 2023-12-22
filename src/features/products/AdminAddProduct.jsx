@@ -1,6 +1,6 @@
 import { HiPlus } from "react-icons/hi2";
 
-import CreateProductForm from "./AdminCreateProductForm";
+import ProductForm from "./AdminProductForm";
 import Modal from "../../ui/Modal";
 import ButtonAdd from "../../ui/ButtonAdd";
 
@@ -14,7 +14,7 @@ function AddProduct() {
           </ButtonAdd>
         </Modal.Open>
         <Modal.Window name="product-form">
-          <CreateProductForm />
+          <ProductForm />
         </Modal.Window>
       </Modal>
     </div>

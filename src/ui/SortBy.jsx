@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import Select from "./Select";
 
-function SortBy({ options, sortValue }) {
+function SortBy({ options, sortValue, type = "white" }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortBy = searchParams.get(sortValue) || "";
 
@@ -24,7 +24,7 @@ function SortBy({ options, sortValue }) {
       onChange={handleChange}
       value={sortBy}
       options={options}
-      type="white"
+      type={type}
     />
   );
 }
