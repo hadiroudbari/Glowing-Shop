@@ -1,27 +1,15 @@
-import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 import Button from "../../ui/Button";
+import { useAddToCart } from "./useAddToCart";
 
 function AddToCart({ product, quantity }) {
-  const [cart, setCart] = useLocalStorageState([], "cart");
+  const { addToCart } = useAddToCart(product, quantity);
 
-  const { id: productId, stock } = product;
-
-  function handleAddToCart(product) {
-    const currentItem = cart.find((item) => item.id === productId);
-
-    if (currentItem)
-      setCart((prev) =>
-        prev.map((item) =>
-          item.id === currentItem.id ? { ...item, quantity } : item
-        )
-      );
-    else setCart((prev) => [...prev, { ...product, quantity }]);
-  }
+  const { stock } = product;
 
   return (
     <>
       {stock ? (
-        <Button bg="dark" size="large" onClick={() => handleAddToCart(product)}>
+        <Button bg="dark" size="large" onClick={() => addToCart()}>
           Add to Bag
         </Button>
       ) : (

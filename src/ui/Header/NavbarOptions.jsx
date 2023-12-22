@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 import { CiSearch, CiShoppingCart, CiStar, CiUser } from "react-icons/ci";
+import { useLocalStorageState } from "../../hooks/useLocalStorageState";
+import { useCart } from "../../features/cart/useCart";
 
 const List = styled.ul`
   display: flex;
@@ -34,6 +36,8 @@ const Link = styled.a`
 `;
 
 function NavbarOptions() {
+  const { cart } = useCart();
+
   return (
     <List>
       <li>
@@ -54,7 +58,7 @@ function NavbarOptions() {
       <li>
         <Link>
           <CiShoppingCart />
-          <span>3</span>
+          <span>{cart?.length}</span>
         </Link>
       </li>
     </List>
