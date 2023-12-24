@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteFromCart } from "../../services/apiCart";
+import { deleteAllFromCart, deleteFromCart } from "../../services/apiCart";
 
 export function useDeleteCart() {
   const queryClient = useQueryClient();
@@ -20,4 +20,25 @@ export function useDeleteCart() {
   });
 
   return { isDeleting, deleteCart };
+}
+
+export function useDeleteAllCart() {
+  const queryClient = useQueryClient();
+
+  const { mutate: deleteAllCart, isLoading: isDeleting } = useMutation({
+    mutationFn: deleteAllFromCart,
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["cart"],
+      });
+      queryClient.refetchQueries({
+        queryKey: ["cart"],
+        type: "active",
+        exact: true,
+      });
+    },
+    onError: (err) => console.log(err),
+  });
+
+  return { isDeleting, deleteAllCart };
 }

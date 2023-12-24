@@ -1,11 +1,33 @@
+import styled from "styled-components";
+import { MdClear } from "react-icons/md";
+
+import { useCart } from "./useCart";
+import { useDeleteAllCart } from "./useDeleteCart";
+
 import Empty from "../../ui/Empty";
 import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import CartRow from "./ShopCartRow";
-import { useCart } from "./useCart";
+
+const ClearText = styled.button`
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  border-bottom: 1px solid var(--color-grey-900);
+  font-weight: 700;
+  transition: all 0.4s;
+
+  &:hover {
+    color: var(--color-brand-950);
+    border-color: var(--color-brand-950);
+  }
+`;
 
 function CartTable() {
   const { cart } = useCart();
+  const { deleteAllCart } = useDeleteAllCart();
 
   if (!cart?.length) return <Empty resourceName="cart" />;
 
@@ -26,6 +48,9 @@ function CartTable() {
           render={(item) => <CartRow item={item} key={item.id} />}
         ></Table.Body>
       </Table>
+      <ClearText onClick={deleteAllCart}>
+        <MdClear size={25} /> Clear Shopping Cart
+      </ClearText>
     </Menus>
   );
 }

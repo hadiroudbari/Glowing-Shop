@@ -50,3 +50,7 @@ export function deleteFromCart(id) {
 
   return cart;
 }
+
+export function deleteAllFromCart() {
+  localStorage.setItem("cart", JSON.stringify([]));
+}
