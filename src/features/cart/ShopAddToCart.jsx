@@ -2,14 +2,18 @@ import Button from "../../ui/Button";
 import { useAddToCart } from "./useAddToCart";
 
 function AddToCart({ product, quantity }) {
-  const { addToCart } = useAddToCart(product, quantity);
+  const { addCart } = useAddToCart();
 
   const { stock } = product;
 
   return (
     <>
       {stock ? (
-        <Button bg="dark" size="large" onClick={() => addToCart()}>
+        <Button
+          bg="dark"
+          size="large"
+          onClick={() => addCart({ product, quantity })}
+        >
           Add to Bag
         </Button>
       ) : (
