@@ -51,8 +51,6 @@ function CartRow({ item }) {
   const { id: cartId, image, name, price, discount, stock, quantity } = item;
   const [count, setCount] = useState(quantity);
 
-  console.log(count);
-
   const { deleteCart } = useDeleteCart();
   const { updateCart } = useUpdateCart();
 

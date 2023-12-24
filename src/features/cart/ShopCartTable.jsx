@@ -8,6 +8,7 @@ import Empty from "../../ui/Empty";
 import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import CartRow from "./ShopCartRow";
+import CartCheckout from "./ShopCartCheckout";
 
 const ClearText = styled.button`
   width: fit-content;
@@ -23,6 +24,12 @@ const ClearText = styled.button`
     color: var(--color-brand-950);
     border-color: var(--color-brand-950);
   }
+`;
+
+const BorderLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-grey-200);
 `;
 
 function CartTable() {
@@ -51,6 +58,8 @@ function CartTable() {
       <ClearText onClick={deleteAllCart}>
         <MdClear size={25} /> Clear Shopping Cart
       </ClearText>
+      <BorderLine />
+      <CartCheckout />
     </Menus>
   );
 }
