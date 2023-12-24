@@ -24,7 +24,7 @@ const CheckoutText = styled.p`
 
 const CheckoutPrice = styled.p`
   font-weight: 900;
-  font-size: 2rem;
+  font-size: 2.4rem;
 `;
 
 const BorderLine = styled.div`
