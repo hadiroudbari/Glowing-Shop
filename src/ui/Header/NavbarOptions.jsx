@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 import { CiSearch, CiShoppingCart, CiStar, CiUser } from "react-icons/ci";
-import { useLocalStorageState } from "../../hooks/useLocalStorageState";
 import { useCart } from "../../features/cart/useCart";
+import { NavLink } from "react-router-dom";
 
 const List = styled.ul`
   display: flex;
   gap: 1.6rem;
 `;
 
-const Link = styled.a`
+const Link = styled(NavLink)`
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -56,7 +56,7 @@ function NavbarOptions() {
         </Link>
       </li>
       <li>
-        <Link>
+        <Link to="/cart">
           <CiShoppingCart />
           <span>{cart?.length}</span>
         </Link>

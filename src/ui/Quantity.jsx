@@ -21,8 +21,8 @@ const Count = styled.span`
   font-weight: 800;
 `;
 
-function Quantity({ maxCount, onCount }) {
-  const [count, setCount] = useState(1);
+function Quantity({ maxCount, onCount, quantity = 1 }) {
+  const [count, setCount] = useState(quantity);
 
   function increase() {
     if (count >= maxCount) return;
