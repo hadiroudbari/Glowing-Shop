@@ -2,7 +2,7 @@ import Button from "../../ui/Button";
 import { useAddToCart } from "./useAddToCart";
 
 function AddToCart({ product, quantity }) {
-  const { addCart } = useAddToCart();
+  const { addCart, isCreating } = useAddToCart();
 
   const { stock } = product;
 
@@ -13,6 +13,7 @@ function AddToCart({ product, quantity }) {
           bg="dark"
           size="large"
           onClick={() => addCart({ product, quantity })}
+          disabled={isCreating}
         >
           Add to Bag
         </Button>

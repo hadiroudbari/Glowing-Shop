@@ -27,6 +27,19 @@ export function addToCart(product, quantity) {
   return cart;
 }
 
+export function UpdateInCart(id, quantity) {
+  const cart = getCart();
+
+  localStorage.setItem(
+    "cart",
+    JSON.stringify(
+      cart.map((item) => (item.id === id ? { ...item, quantity } : item))
+    )
+  );
+
+  return cart;
+}
+
 export function deleteFromCart(id) {
   const cart = getCart();
 

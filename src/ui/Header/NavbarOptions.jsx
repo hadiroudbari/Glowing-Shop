@@ -58,7 +58,7 @@ function NavbarOptions() {
       <li>
         <Link to="/cart">
           <CiShoppingCart />
-          <span>{cart?.length}</span>
+          {cart?.length > 0 ? <span>{cart.length}</span> : ""}
         </Link>
       </li>
     </List>

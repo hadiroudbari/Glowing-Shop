@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiTrash } from "react-icons/hi";
 
 import Table from "../../ui/Table";
@@ -11,6 +11,7 @@ import FlexRow from "../../ui/FlexRow";
 
 import { formatCurrency } from "../../utils/helpers";
 import { useDeleteCart } from "./useDeleteCart";
+import { useUpdateCart } from "./useUpdateCart";
 
 const Img = styled.img`
   display: block;
@@ -50,7 +51,17 @@ function CartRow({ item }) {
   const { id: cartId, image, name, price, discount, stock, quantity } = item;
   const [count, setCount] = useState(quantity);
 
-  const { deleteCart, isDeleting } = useDeleteCart();
+  console.log(count);
+
+  const { deleteCart } = useDeleteCart();
+  const { updateCart } = useUpdateCart();
+
+  useEffect(
+    function () {
+      updateCart({ cartId, count });
+    },
+    [count, cartId, updateCart]
+  );
 
   return (
     <Table.Row>
@@ -64,12 +75,12 @@ function CartRow({ item }) {
         <Price>{formatCurrency(price - discount)}</Price>
       </FlexRow>
 
-      <TotalPrice>{formatCurrency(price * quantity)}</TotalPrice>
+      <TotalPrice>{formatCurrency((price - discount) * quantity)}</TotalPrice>
 
       <div>
         <Modal>
           <Modal.Open opens="delete">
-            <Button bg="dark" size="small" disabled={isDeleting}>
+            <Button bg="dark" size="small">
               <HiTrash />
             </Button>
           </Modal.Open>
@@ -77,7 +88,6 @@ function CartRow({ item }) {
           <Modal.Window name="delete">
             <ConfirmDelete
               resourceName="cart"
-              disabled={isDeleting}
               onConfirm={() => deleteCart(cartId)}
             />
           </Modal.Window>
