@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Header from "../ui/Header/Header";
 import HeaderNav from "../ui/Header/HeaderNav";
 import HeaderTitle from "../ui/Header/HeaderTitle";
-import Row from "../ui/Row";
 import CheckoutForm from "../features/checkout/ShopCheckoutForm";
 import CheckoutSummary from "../features/checkout/ShopCheckoutSummary";
 
@@ -15,6 +14,12 @@ const CheckoutContainer = styled.div`
   gap: 4.8rem;
 `;
 
+const CheckoutBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 6.4rem;
+`;
+
 function Checkout() {
   return (
     <>
@@ -24,10 +29,10 @@ function Checkout() {
       </Header>
 
       <CheckoutContainer>
-        <Row type="horizontal">
+        <CheckoutBox>
           <CheckoutForm />
           <CheckoutSummary />
-        </Row>
+        </CheckoutBox>
       </CheckoutContainer>
     </>
   );

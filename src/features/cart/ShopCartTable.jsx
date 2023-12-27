@@ -9,6 +9,8 @@ import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import CartRow from "./ShopCartRow";
 import CartCheckout from "./ShopCartCheckout";
+import { scrollToTop } from "../../utils/helpers";
+import { useEffect } from "react";
 
 const ClearText = styled.button`
   width: fit-content;
@@ -35,6 +37,10 @@ const BorderLine = styled.div`
 function CartTable() {
   const { cart } = useCart();
   const { deleteAllCart } = useDeleteAllCart();
+
+  useEffect(function () {
+    scrollToTop();
+  }, []);
 
   if (!cart?.length) return <Empty resourceName="cart" />;
 

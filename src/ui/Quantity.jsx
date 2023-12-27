@@ -61,14 +61,14 @@ function Quantity({ maxCount, onCount, quantity = 1 }) {
 
   function increase() {
     if (count >= maxCount) return;
-    setCount((prev) => prev + 1);
-    onCount(count + 1);
+    setCount((prev) => +prev + 1);
+    onCount(+count + 1);
   }
 
   function decrease() {
     if (count === 1) return;
-    setCount((prev) => prev - 1);
-    onCount(count - 1);
+    setCount((prev) => +prev - 1);
+    onCount(+count - 1);
   }
 
   return (
@@ -82,10 +82,10 @@ function Quantity({ maxCount, onCount, quantity = 1 }) {
           value={count}
           onChange={(e) => {
             e.target.value <= maxCount
-              ? setCount(e.target.value)
+              ? setCount(+e.target.value)
               : setCount(maxCount);
             e.target.value <= maxCount
-              ? onCount(e.target.value)
+              ? onCount(+e.target.value)
               : onCount(maxCount);
           }}
           onFocus={() => setInput((value) => !value)}
