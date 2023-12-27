@@ -1,8 +1,11 @@
 import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
+import Empty from "../../ui/Empty";
 import AdminOrderDetailsRow from "./AdminOrderDetailsRow";
 
 function AdminOrderDetailsTable({ products }) {
+  if (!products?.length) return <Empty resourceName="orders" />;
+
   return (
     <Menus>
       <Table columns="1fr 3fr 1fr 1fr 1fr">
