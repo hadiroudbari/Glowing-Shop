@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
+import { useUpdateOrder } from "./useUpdateOrder";
 import AdminOrderDetailsTable from "./AdminOrderDetailsTable";
 import Button from "../../ui/Button";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 const StyledDetails = styled.div`
   min-width: 50rem;
@@ -50,7 +52,10 @@ const CenterBtn = styled.div`
 `;
 
 function AdminOrderDetails({ order }) {
+  const { updateOrder, isUpdating } = useUpdateOrder();
+
   const {
+    id,
     firstName,
     lastName,
     address,
@@ -60,6 +65,13 @@ function AdminOrderDetails({ order }) {
     products,
     status,
   } = order;
+
+  function handleUpdate() {
+    delete order.customers;
+    const newOrder = { ...order, status: "received" };
+
+    updateOrder({ order: newOrder, id });
+  }
 
   return (
     <StyledDetails>
@@ -94,10 +106,19 @@ function AdminOrderDetails({ order }) {
 
       {status === "pending" ? (
         <CenterBtn>
-          <Button>Mark as Recieved</Button>
+          <Button onClick={handleUpdate} disabled={isUpdating}>
+            {!isUpdating ? "Mark as Recieved" : <SpinnerMini />}
+          </Button>
         </CenterBtn>
       ) : (
-        "goodbye"
+        <CenterBtn>
+          <List>
+            <Item gap="12">
+              <p>Arrived At : </p>
+              <p>{arrived_at?.split("T")[0]}</p>
+            </Item>
+          </List>
+        </CenterBtn>
       )}
     </StyledDetails>
   );
