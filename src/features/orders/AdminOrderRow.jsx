@@ -7,6 +7,7 @@ import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import AdminUpdateOrderForm from "./AdminUpdateOrderForm";
+import { useDeleteOrder } from "./useDeleteOrder";
 
 const Name = styled.div`
   font-size: 1.6rem;
@@ -55,12 +56,13 @@ const StyledId = styled.div`
 `;
 
 function AdminOrderRow({ order }) {
-  let firstName, lastName, email;
+  const { deleteOrder, isDeleting } = useDeleteOrder();
 
+  let firstName, lastName, email;
   if (order.customers) ({ firstName, lastName, email } = order.customers);
   else ({ firstName, lastName, email } = order);
 
-  const { status, created_at: date, totalPrice, orderId } = order;
+  const { id, status, created_at: date, totalPrice, orderId } = order;
 
   const formatedDate = date.split("T")[0].split("-").join(".");
   const formatedOrderId = orderId.split("-")[0];
@@ -78,24 +80,30 @@ function AdminOrderRow({ order }) {
       <div>
         <Modal>
           <Menus.Menu>
-            <Menus.Toggle id={1} />
+            <Menus.Toggle id={id} />
 
-            <Menus.List id={1}>
-              <Modal.Open opens="edit">
+            <Menus.List id={id}>
+              <Modal.Open opens="details">
                 <Menus.Button icon={<HiEye />}>View Details</Menus.Button>
               </Modal.Open>
 
               <Modal.Open opens="delete">
-                <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                <Menus.Button icon={<HiTrash />} disabled={isDeleting}>
+                  Delete
+                </Menus.Button>
               </Modal.Open>
             </Menus.List>
 
-            <Modal.Window name="edit">
+            <Modal.Window name="details">
               <AdminUpdateOrderForm cabinToEdit="" />
             </Modal.Window>
 
             <Modal.Window name="delete">
-              <ConfirmDelete resourceName="cabins" />
+              <ConfirmDelete
+                resourceName="order"
+                onConfirm={() => deleteOrder(id)}
+                disabled={isDeleting}
+              />
             </Modal.Window>
           </Menus.Menu>
         </Modal>

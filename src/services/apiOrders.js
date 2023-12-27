@@ -51,3 +51,14 @@ export async function createOrder(order) {
 
   return data;
 }
+
+export async function deleteOrder(id) {
+  const { data, error } = await supabase.from("orders").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Order could not be deleted");
+  }
+
+  return data;
+}
