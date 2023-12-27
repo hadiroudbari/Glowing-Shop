@@ -33,7 +33,21 @@ export async function getOrders({ sortBy, filter, page }) {
     throw new Error("Orders could not be loaded");
   }
 
-  console.log(orders);
-
   return { orders, count };
+}
+
+export async function createOrder(order) {
+  const products = JSON.stringify(order.products);
+
+  const { data, error } = await supabase
+    .from("orders")
+    .insert([{ ...order, products, status: "pending", isPaid: true }])
+    .select();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Order could not be created");
+  }
+
+  return data;
 }
