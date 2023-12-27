@@ -2,12 +2,12 @@ import styled from "styled-components";
 import { HiEye, HiTrash } from "react-icons/hi2";
 
 import { formatCurrency } from "../../utils/helpers";
+import { useDeleteOrder } from "./useDeleteOrder";
 import Table from "../../ui/Table";
 import Modal from "../../ui/Modal";
 import Menus from "../../ui/Menus";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import AdminUpdateOrderForm from "./AdminUpdateOrderForm";
-import { useDeleteOrder } from "./useDeleteOrder";
+import AdminOrderDetails from "./AdminOrderDetails";
 
 const Name = styled.div`
   font-size: 1.6rem;
@@ -95,7 +95,7 @@ function AdminOrderRow({ order }) {
             </Menus.List>
 
             <Modal.Window name="details">
-              <AdminUpdateOrderForm cabinToEdit="" />
+              <AdminOrderDetails order={order} />
             </Modal.Window>
 
             <Modal.Window name="delete">
