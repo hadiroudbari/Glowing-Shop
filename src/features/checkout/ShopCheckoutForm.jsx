@@ -2,15 +2,13 @@ import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
 import { useCart } from "../cart/useCart";
+import { useAddCheckout } from "./useAddCheckout";
+
 import Heading from "../../ui/Heading";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
 import Button from "../../ui/Button";
 import FormRow from "../../ui/FormRow";
-import SpinnerMini from "../../ui/SpinnerMini";
-import { parseISO } from "date-fns";
-import { useAddCheckout } from "./useAddCheckout";
-import { useNavigate } from "react-router-dom";
 
 const FormBox = styled.div`
   width: 65%;
@@ -58,27 +56,27 @@ function CheckoutForm() {
     <FormBox>
       <Heading as="h2">Shipping Information</Heading>
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
-        <FormRow label="First Name :" error={errors?.firstname?.message}>
+        <FormRow label="First Name :" error={errors?.firstName?.message}>
           <Input
             type="text"
-            id="firstname"
-            {...register("firstname", {
+            id="firstName"
+            {...register("firstName", {
               required: "This field is required",
             })}
           />
         </FormRow>
 
-        <FormRow label="Last Name :" error={errors?.lastname?.message}>
+        <FormRow label="Last Name :" error={errors?.lastName?.message}>
           <Input
             type="text"
-            id="lastname"
-            {...register("lastname", {
+            id="lastName"
+            {...register("lastName", {
               required: "This field is required",
             })}
           />
         </FormRow>
 
-        <FormRow label="Email Address :" error={errors?.email?.message}>
+        <FormRow label="Email :" error={errors?.email?.message}>
           <Input
             type="email"
             id="email"

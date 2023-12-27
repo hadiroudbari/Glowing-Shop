@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { clearCheckout } from "../../services/apiCheckout";
 
-export function useDeleteAllCheckout() {
+export function useDeleteCheckout() {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteAllCheckout, isLoading: isDeleting } = useMutation({
+  const { mutate: deleteCheckout, isLoading: isDeleting } = useMutation({
     mutationFn: clearCheckout,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -19,5 +19,5 @@ export function useDeleteAllCheckout() {
     onError: (err) => console.log(err),
   });
 
-  return { isDeleting, deleteAllCheckout };
+  return { isDeleting, deleteCheckout };
 }

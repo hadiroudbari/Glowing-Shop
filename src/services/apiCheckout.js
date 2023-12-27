@@ -11,5 +11,5 @@ export function addToCheckout(data) {
 }
 
 export function clearCheckout() {
-  localStorage.setItem("checkout", JSON.stringify([]));
+  localStorage.removeItem("checkout");
 }

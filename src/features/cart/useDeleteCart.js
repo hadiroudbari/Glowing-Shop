@@ -22,10 +22,10 @@ export function useDeleteCart() {
   return { isDeleting, deleteCart };
 }
 
-export function useDeleteAllCart() {
+export function useClearCart() {
   const queryClient = useQueryClient();
 
-  const { mutate: deleteAllCart, isLoading: isDeleting } = useMutation({
+  const { mutate: clearCart, isLoading: isDeleting } = useMutation({
     mutationFn: deleteAllFromCart,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -40,5 +40,5 @@ export function useDeleteAllCart() {
     onError: (err) => console.log(err),
   });
 
-  return { isDeleting, deleteAllCart };
+  return { isDeleting, clearCart };
 }

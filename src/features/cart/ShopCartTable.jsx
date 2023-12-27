@@ -1,16 +1,16 @@
 import styled from "styled-components";
+import { useEffect } from "react";
 import { MdClear } from "react-icons/md";
 
 import { useCart } from "./useCart";
-import { useDeleteAllCart } from "./useDeleteCart";
+import { useClearCart } from "./useDeleteCart";
+import { scrollToTop } from "../../utils/helpers";
 
 import Empty from "../../ui/Empty";
 import Menus from "../../ui/Menus";
 import Table from "../../ui/Table";
 import CartRow from "./ShopCartRow";
 import CartCheckout from "./ShopCartCheckout";
-import { scrollToTop } from "../../utils/helpers";
-import { useEffect } from "react";
 
 const ClearText = styled.button`
   width: fit-content;
@@ -36,7 +36,7 @@ const BorderLine = styled.div`
 
 function CartTable() {
   const { cart } = useCart();
-  const { deleteAllCart } = useDeleteAllCart();
+  const { clearCart } = useClearCart();
 
   useEffect(function () {
     scrollToTop();
@@ -61,7 +61,7 @@ function CartTable() {
           render={(item) => <CartRow item={item} key={item.id} />}
         ></Table.Body>
       </Table>
-      <ClearText onClick={deleteAllCart}>
+      <ClearText onClick={clearCart}>
         <MdClear size={25} /> Clear Shopping Cart
       </ClearText>
       <BorderLine />
