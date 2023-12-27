@@ -27,7 +27,7 @@ const StyledDetails = styled.div`
 `;
 
 const TableBox = styled.div`
-  min-height: 20rem;
+  height: fit-content;
 `;
 
 const List = styled.ul`
@@ -48,7 +48,6 @@ const Item = styled.li`
 const CenterBtn = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
 `;
 
 function AdminOrderDetails({ order }) {

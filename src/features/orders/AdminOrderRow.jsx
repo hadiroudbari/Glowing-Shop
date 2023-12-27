@@ -13,6 +13,7 @@ const Name = styled.div`
   font-size: 1.6rem;
   font-weight: 700;
   font-family: "Urbanist";
+  text-transform: capitalize;
 `;
 
 const Email = styled.div`
