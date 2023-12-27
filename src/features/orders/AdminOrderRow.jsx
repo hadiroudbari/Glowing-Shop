@@ -55,13 +55,12 @@ const StyledId = styled.div`
 `;
 
 function AdminOrderRow({ order }) {
-  const {
-    customers: { firstName, lastName, email },
-    status,
-    created_at: date,
-    totalPrice,
-    orderId,
-  } = order;
+  let firstName, lastName, email;
+
+  if (order.customers) ({ firstName, lastName, email } = order.customers);
+  else ({ firstName, lastName, email } = order);
+
+  const { status, created_at: date, totalPrice, orderId } = order;
 
   const formatedDate = date.split("T")[0].split("-").join(".");
   const formatedOrderId = orderId.split("-")[0];

@@ -5,7 +5,7 @@ export async function getOrders({ sortBy, filter, page }) {
   let query = supabase
     .from("orders")
     .select(
-      "id, orderId, created_at, arrived_at, completed_at, customers(*), cart, totalPrice, status, shippingType, paymentMethod",
+      "id, orderId, created_at, arrived_at, completed_at, customers(*), products, totalPrice, status, shippingType, paymentMethod, firstName, lastName, email, phone, address",
       { count: "exact" }
     );
 
