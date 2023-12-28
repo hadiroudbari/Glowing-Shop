@@ -19,6 +19,7 @@ const StyledNav = styled.div`
 const CurrentPage = styled(NavLink)`
   color: var(--color-grey-900);
   font-weight: 700;
+  text-transform: capitalize;
 `;
 
 const SpaceLine = styled.span`
@@ -28,7 +29,7 @@ const SpaceLine = styled.span`
   background-color: var(--color-grey-500);
 `;
 
-function HeaderNav({ product }) {
+function HeaderNav({ product, current, currentLink }) {
   return (
     <StyledNav>
       <NavLink to="/home">Home</NavLink>
@@ -39,8 +40,18 @@ function HeaderNav({ product }) {
           <SpaceLine />
           <CurrentPage to={`/shop/${product?.id}`}>{product?.name}</CurrentPage>
         </>
+      ) : current ? (
+        <NavLink to="/shop">Shop</NavLink>
       ) : (
         <CurrentPage to="/shop">Shop</CurrentPage>
+      )}
+      {current ? (
+        <>
+          <SpaceLine />
+          <CurrentPage to={`/${currentLink}`}>{current}</CurrentPage>
+        </>
+      ) : (
+        ""
       )}
     </StyledNav>
   );
