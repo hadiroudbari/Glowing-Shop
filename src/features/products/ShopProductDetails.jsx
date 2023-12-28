@@ -59,7 +59,7 @@ const SpaceLine = styled.div`
 function ProductDetails() {
   const { product, isLoading } = useProduct();
   const { products, isLoading: isLoading2 } = useProducts(10);
-  const [count, setCount] = useState();
+  const [count, setCount] = useState(1);
 
   const navigate = useNavigate();
 
@@ -96,7 +96,7 @@ function ProductDetails() {
                   : "Sorry, this Product is unavailable !"}
               </StockText>
             </FlexRow>
-            <AddToCart stock={stock} />
+            <AddToCart product={product} quantity={count} />
             <DetailsOperations />
             <DetailsInfo product={product} />
           </StyledDetailsBox>
