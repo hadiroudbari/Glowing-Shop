@@ -37,7 +37,7 @@ function CheckoutForm() {
     const arrived_at = new Date(data.arrived_at).toISOString();
 
     addCheckout(
-      { ...data, totalPrice, arrived_at, products: { ...cart } },
+      { ...data, totalPrice, arrived_at, products: [...cart] },
       {
         onSuccess: () => {
           reset();

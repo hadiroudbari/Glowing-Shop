@@ -5,7 +5,7 @@ export async function getOrders({ sortBy, filter, page }) {
   let query = supabase
     .from("orders")
     .select(
-      "id, orderId, created_at, arrived_at, completed_at, customers(*), cart, totalPrice, status, shippingType, paymentMethod",
+      "id, orderId, created_at, arrived_at, completed_at, customers(*), products, totalPrice, status, shippingType, paymentMethod, firstName, lastName, email, phone, address",
       { count: "exact" }
     );
 
@@ -36,17 +36,37 @@ export async function getOrders({ sortBy, filter, page }) {
   return { orders, count };
 }
 
-export async function createOrder(order) {
+export async function createUpdateOrder(order, id) {
   const products = JSON.stringify(order.products);
 
-  const { data, error } = await supabase
-    .from("orders")
-    .insert([{ ...order, products, status: "pending", isPaid: true }])
-    .select();
+  let query = supabase.from("orders");
+
+  // A) CREATE
+  if (!id)
+    query = query.insert([
+      { ...order, products, status: "pending", isPaid: true },
+    ]);
+
+  // B) EDIT
+  if (id) query = query.update([order]).eq("id", id);
+
+  const { data, error } = await query.select().single();
 
   if (error) {
     console.error(error);
-    throw new Error("Order could not be created");
+    if (id) throw new Error("Order could not be updated");
+    else throw new Error("Order could not be created");
+  }
+
+  return data;
+}
+
+export async function deleteOrder(id) {
+  const { data, error } = await supabase.from("orders").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Order could not be deleted");
   }
 
   return data;

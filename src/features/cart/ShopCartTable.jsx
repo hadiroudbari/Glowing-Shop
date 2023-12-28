@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { MdClear } from "react-icons/md";
 
 import { useCart } from "./useCart";
-import { useClearCart } from "./useDeleteCart";
 import { scrollToTop } from "../../utils/helpers";
+import { useClearCart } from "./useDeleteCart";
 
 import Empty from "../../ui/Empty";
 import Menus from "../../ui/Menus";

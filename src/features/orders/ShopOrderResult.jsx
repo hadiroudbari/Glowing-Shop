@@ -38,7 +38,10 @@ function OrderResult() {
     function () {
       if (orderStatus === "pending") {
         clearCart();
-        if (checkout) createOrder(checkout);
+        if (checkout) {
+          createOrder(checkout);
+          deleteCheckout();
+        }
       } else if (orderStatus === "cancel") deleteCheckout();
     },
     [orderStatus, deleteCheckout, clearCart, createOrder, checkout]

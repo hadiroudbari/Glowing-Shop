@@ -7,7 +7,7 @@ function Textarea({ initialValue, onChange }) {
   return (
     <Editor
       onInit={(evt, editor) => (editorRef.current = editor)}
-      apiKey="1lzjz4gz78piabxlh6q5ym2s14cy9rzqlq0b3gnta9ra4am1"
+      apiKey="7yy7asxkcrkecr6oq6lwqqxz84nm6uo7b8gxpijvew801moe"
       init={{
         height: 200,
         menubar: false,
